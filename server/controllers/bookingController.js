@@ -1,4 +1,4 @@
-import Booking from '../models/bookings.js';
+import Booking from '../models/Booking.js';
 
 export {
   cart,
