@@ -1,0 +1,46 @@
+// Profile.module.scss
+.useState{
+$bg-main: #F7F9F9;
+$bg-alt: #D9E3E2;
+$text-main: #353B32;
+$accent: #7B9E89;
+$border-radius: 12px;
+$transition: 0.3s ease;
+
+.profileContainer {
+  background: $bg-main;
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  color: $text-main;
+  font-family: sans-serif;
+
+  .profilePicture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid $accent;
+    transition: transform $transition;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: lighten($text-main, 10%);
+    margin-bottom: 0;
+  }
+}
+}

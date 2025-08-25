@@ -1,0 +1,37 @@
+// common.scss
+
+$bg-main: #F7F9F9;
+$bg-alt: #D9E3E2;
+$text-main: #353B32;
+$accent: #7B9E89;
+$link-hover: darken($accent, 12%);
+
+.header {
+  background: $bg-main;
+  border-bottom: 2px solid $bg-alt;
+  padding: 1rem 2rem;
+
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    img {
+      height: 50px; // adjust as needed
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+}
