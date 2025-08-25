@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import CategoryList from '../components/createBooking/CategoryList';
-import ItemList from '../components/createBooking/ItemList';
+import CategoryList from '../../components/createBooking/CategoryList/CategoryList';
+import ItemList from '../../components/createBooking/ItemList/ItemList';
 import '../styles/CreateBooking.scss';
 
 const CreateBooking = () => {

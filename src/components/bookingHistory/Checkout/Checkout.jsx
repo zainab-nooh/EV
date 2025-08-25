@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import BookingCart from './BookingCart';
+import BookingCart from '../BookingCart/BookingCart';
 
 const Checkout = () => {
   const [orderComplete, setOrderComplete] = useState(false);

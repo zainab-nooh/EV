@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Then import other modules that need environment variables
-import './server/config/database.js';
+import './config/database.js';
 import app from './app-server.js';
 
 const PORT = process.env.PORT || 3000;

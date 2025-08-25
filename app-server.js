@@ -2,12 +2,12 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import cors from 'cors';
-import auth from './server/middleware/auth.js'
-import jwt from './server/config/jwt.js'
-import userRoutes from './server/routes/users.js'
-import categoryRoutes from './server/routes/categories.js'
-import itemRoutes from './server/routes/items.js'
-import bookingRoutes from './server/routes/bookings.js'
+import auth from './middleware/auth.js'
+import jwt from './config/jwt.js'
+import userRoutes from './routes/users.js'
+import categoryRoutes from './routes/categories.js'
+import itemRoutes from './routes/items.js'
+import bookingRoutes from './routes/bookings.js'
 
 
 const __filename = fileURLToPath(import.meta.url);
