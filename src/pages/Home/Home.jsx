@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "../../components/common/Navbar/Navbar";
 import Footer from "../../components/common/Footer/Footer";
+import styles from "../../pages/Home/Home.module.scss";
 import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {

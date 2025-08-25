@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styles from "../../pages/Profile/Profile.module.scss";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
