@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import auth from './middleware/auth.js'
 import jwt from './config/jwt.js'
+import homeRoutes from './routes/home.js'
 import userRoutes from './routes/users.js'
 import categoryRoutes from './routes/categories.js'
 import itemRoutes from './routes/items.js'
@@ -23,10 +24,12 @@ app.use((req, res, next) => {
 })
 
 // // API Routes - these must come before the static file serving
-app.use('/users.js', userRoutes)
-app.use('/categories.js', categoryRoutes )
-app.use('/items.js', itemRoutes)
-app.use('/bookings.js', bookingRoutes)
+app.use('/api/home', homeRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/categories', categoryRoutes )
+app.use('/api/items', itemRoutes)
+app.use('/api/bookings', bookingRoutes)
+
 // app.use('/api/users', userRoutes);
 // app.use('/api/items', checkToken, ensureLoggedIn, itemRoutes);
 // app.use('/api/orders', checkToken, ensureLoggedIn, orderRoutes);
