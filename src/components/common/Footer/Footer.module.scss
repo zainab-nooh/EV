@@ -1,0 +1,64 @@
+// common.scss
+
+$bg-main: #F7F9F9;   
+$bg-alt: #D9E3E2;    
+$text-main: #353B32; 
+$accent: #7B9E89;    
+$link-hover: darken($accent, 12%);
+$border-radius: 12px;
+
+.footer {
+  background: $bg-main;
+  color: $text-main;
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+
+  .footer-section {
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: $accent;
+    }
+
+    p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: $text-main;
+      opacity: 0.85;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 0.6rem;
+
+        a {
+          text-decoration: none;
+          color: $text-main;
+          font-weight: 500;
+          transition: 0.3s ease;
+
+          &:hover {
+            color: $link-hover;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(53, 59, 50, 0.2);
+    color: $text-main;
+    opacity: 0.7;
+  }
+}

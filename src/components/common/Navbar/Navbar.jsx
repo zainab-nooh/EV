@@ -1,10 +1,11 @@
 
 import { Link } from "react-router-dom";
-import "../../styles/common.scss";
+import "../../common/Navbar/Navbar.module.scss"; 
 import profile from "../../styles/6522516.png"; 
 import home from "../../styles/profile-removebg-preview.png";
  const Navbar = props => {
     return (
+        
         <nav className="navbar">
         <div className="navbar-container">
             <ul className="navbar-menu">
