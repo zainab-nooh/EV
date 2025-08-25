@@ -33,7 +33,7 @@ const checkAuth = async (req, res, next) => {
     next();
   } catch (error) {
     console.error('Auth middleware error:', error);
-    return res.status(401).json({ error: 'Invalid token' });
+    // return res.status(401).json({ error: 'Invalid token' });
   }
 };
 
