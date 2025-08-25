@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/common/Navbar";
 import Footer from "../components/common/Footer";
+import Header from "../components/common/Header"
+import SearchBar from "../components/common/Searchbar";
 import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
@@ -60,7 +62,9 @@ export default function Homepage() {
 
   return (
     <>
+    <Header/>
       <Navbar />
+      <SearchBar/>
       <main className={styles.mainContent}>
         {/* Categories Section */}
         <h1>Available Categories</h1>

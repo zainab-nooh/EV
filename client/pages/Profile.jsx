@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
+import Navbar from "../components/common/Navbar";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
@@ -8,7 +11,7 @@ export default function ProfilePage() {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const response = await fetch('/api/user/profile');
+        const response = await fetch('/api/users/profile');
         if (!response.ok) throw new Error('Failed to fetch user data');
         const data = await response.json();
         setUser(data);
@@ -26,6 +29,9 @@ export default function ProfilePage() {
   if (error) return <p>Error: {error}</p>;
 
   return (
+    <>
+    <Header/>
+    <Navbar/>
     <div className={styles.profileContainer}>
       <img 
         src={user.picture || '/default-profile.png'} 
@@ -35,5 +41,7 @@ export default function ProfilePage() {
       <h2>{user.name}</h2>
       <p>{user.email}</p>
     </div>
+    <Footer/>
+    </>
   );
 }

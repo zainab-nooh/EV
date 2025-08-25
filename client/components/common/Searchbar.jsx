@@ -16,7 +16,7 @@ export default function SearchBar() {
       const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
       if (!response.ok) throw new Error("Search failed");
       const data = await response.json();
-      setResults(data); // expect array of categories + items
+      setResults(data); 
     } catch (err) {
       console.error(err);
     } finally {
