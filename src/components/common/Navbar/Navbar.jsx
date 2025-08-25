@@ -13,7 +13,9 @@ import home from "../../styles/profile-removebg-preview.png";
             <li className="navbar-item">
                 <Link to="/new-booking" className="navbar-link">New Booking</Link>
             </li>
-        
+            <li className="navbar-item">
+                <Link to="/profile" className="navbar-link">Profile</Link>
+            </li>
             <li className="navbar-item">
                 <Link to="/logout" className="navbar-link">Logout</Link>
             </li>
