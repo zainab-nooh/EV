@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BookingDetail from '../BookingDetail/BookingDetail';
+import style from "../../components/bookingHistory/BookingHistory/BookingHistory.module.scss";
 
 const BookingHistory = () => {
   const [bookings, setBookings] = useState([]);
@@ -41,16 +42,6 @@ const BookingHistory = () => {
 
   const handleBackToList = () => {
     setSelectedBooking(null);
-  };
-
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'pending': return '#f39c12';
-      case 'confirmed': return '#3498db';
-      case 'completed': return '#27ae60';
-      case 'cancelled': return '#e74c3c';
-      default: return '#666';
-    }
   };
 
   const formatDate = (dateString) => {
@@ -136,8 +127,7 @@ const BookingHistory = () => {
                   <strong>Order #{booking._id.slice(-8).toUpperCase()}</strong>
                 </div>
                 <div 
-                  className="booking-status"
-                  style={{ backgroundColor: getStatusColor(booking.status) }}
+                  className={`${style.bookingStatus} ${style[booking.status]}`}
                 >
                   {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
                 </div>
