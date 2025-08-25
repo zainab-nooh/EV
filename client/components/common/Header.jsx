@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../styles/Header.scss";
+import "../../styles/common.scss";
 import EVLogo from "../../styles/EV-Black-Version.png"; 
 
 const Header = () => {
