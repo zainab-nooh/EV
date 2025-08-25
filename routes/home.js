@@ -8,3 +8,5 @@ const router = express.Router();
 router.get('/', itemsCtrl.index)
 // Get Items
 router.get('/', checkAuth, dataController.index, apiController.index)
+
+export default router;

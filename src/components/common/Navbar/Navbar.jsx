@@ -1,8 +1,8 @@
 
 import { Link } from "react-router-dom";
 import "../../common/Navbar/Navbar.module.scss"; 
-import profile from "../../styles/6522516.png"; 
-import home from "../../styles/profile-removebg-preview.png";
+import profile from '/Profile.png'
+import home from '/Home.png'
  const Navbar = props => {
     return (
         
@@ -10,7 +10,7 @@ import home from "../../styles/profile-removebg-preview.png";
         <div className="navbar-container">
             <ul className="navbar-menu">
             className="navbar-item"
-            <image src={home} alt="Home" className="navbar-home-image" />
+            <img src={home} alt="Home" className="navbar-home-image"/>  
             <li className="navbar-item">
                 <Link to="/new-booking" className="navbar-link">New Booking</Link>
             </li>
