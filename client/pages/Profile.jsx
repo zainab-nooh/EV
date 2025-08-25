@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 import Navbar from "../components/common/Navbar";
+import styles from "../styles/Profile.scss"
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);

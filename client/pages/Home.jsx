@@ -5,6 +5,7 @@ import Header from "../components/common/Header"
 import SearchBar from "../components/common/Searchbar";
 import { useNavigate } from "react-router-dom";
 
+
 export default function Homepage() {
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
@@ -22,7 +23,7 @@ export default function Homepage() {
         const response = await fetch('/api/categories');
         if (!response.ok) throw new Error('Failed to fetch categories');
         const data = await response.json();
-        setCategories(data);
+        setCategories(data.categories);
       } catch (err) {
         setError(err.message);
       } finally {
