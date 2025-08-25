@@ -10,11 +10,6 @@ const Header = () => {
         <Link to="/" className="header-logo">
           <img src={EVLogo} alt="EV Logo" />
         </Link>
-
-        {/* Profile */}
-        <nav className="header-nav">
-          <Link to="/profile" className="profile-link">Profile</Link>
-        </nav>
       </div>
     </header>
   );
