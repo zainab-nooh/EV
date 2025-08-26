@@ -16,17 +16,18 @@ $link-hover: darken($accent, 12%);
     gap: 2rem;
   }
   .header-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    img {
-      height: 40px; // smaller logo
-      width: auto;
-      transition: transform 0.3s ease;
-    }
-    &:hover img {
-      transform: scale(1.05);
-    }
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  img {
+    height: 40px;
+    width: 60px; // Set both dimensions
+    object-fit: contain; // Maintains aspect ratio within bounds
+    transition: transform 0.3s ease;
   }
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
      }
   
