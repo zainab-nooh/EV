@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import styles from './bookinghistory.module.scss';
+import styles from './BookingHistory.module.scss';
 
 const BookingHistory = ({setUser}) => {
   const [bookings, setBookings] = useState([]);
