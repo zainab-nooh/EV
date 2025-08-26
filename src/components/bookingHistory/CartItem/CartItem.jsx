@@ -1,4 +1,5 @@
 import React from 'react';
+import style from "./CartItem.module.scss";
 
 const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
   const handleQuantityChange = (change) => {
@@ -24,33 +25,33 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
   const itemTotal = (item.price * item.quantity).toFixed(2);
 
   return (
-    <div className="cart-item">
-      <div className="item-image">
+    <div className={style.cartItem}>
+      <div className={style.itemImage}>
         {item.picture ? (
           <img src={item.picture} alt={item.name} />
         ) : (
-          <div className="placeholder-image">
+          <div className={style.placeholderImage}>
             <span>No Image</span>
           </div>
         )}
       </div>
 
-      <div className="item-details">
-        <h3 className="item-name">{item.name}</h3>
+      <div className={style.itemDetails}>
+        <h3 className={style.itemName}>{item.name}</h3>
         {item.details && (
-          <p className="item-description">{item.details}</p>
+          <p className={style.itemDescription}>{item.details}</p>
         )}
-        <div className="item-price">
-          <span className="price-label">Unit Price:</span>
-          <span className="price-value">${item.price.toFixed(2)}</span>
+        <div className={style.itemPrice}>
+          <span className={style.priceLabel}>Unit Price:</span>
+          <span className={style.priceValue}>${item.price.toFixed(2)}</span>
         </div>
       </div>
 
-      <div className="quantity-controls">
-        <label className="quantity-label">Quantity:</label>
-        <div className="quantity-input-group">
+      <div className={style.quantityControls}>
+        <label className={style.quantityLabel}>Quantity:</label>
+        <div className={style.quantityInputGroup}>
           <button
-            className="quantity-btn minus"
+            className={`${style.quantityBtn} ${style.minus}`}
             onClick={() => handleQuantityChange(-1)}
             disabled={item.quantity <= 1}
           >
@@ -58,13 +59,13 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
           </button>
           <input
             type="number"
-            className="quantity-input"
+            className={style.quantityInput}
             value={item.quantity}
             onChange={handleQuantityInput}
             min="1"
           />
           <button
-            className="quantity-btn plus"
+            className={`${style.quantityBtn} ${style.plus}`}
             onClick={() => handleQuantityChange(1)}
           >
             +
@@ -72,20 +73,20 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
         </div>
       </div>
 
-      <div className="item-total">
-        <div className="total-label">Total:</div>
-        <div className="total-value">${itemTotal}</div>
+      <div className={style.itemTotal}>
+        <div className={style.totalLabel}>Total:</div>
+        <div className={style.totalValue}>${itemTotal}</div>
       </div>
 
-      <div className="item-actions">
+      <div className={style.itemActions}>
         <button
-          className="btn btn-danger btn-small"
+          className={`${style.btn} ${style.btnDanger} ${style.btnSmall}`}
           onClick={handleRemove}
         >
           Remove
         </button>
       </div>
-        </div>
+    </div>
   );
 };  
 

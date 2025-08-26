@@ -1,8 +1,8 @@
-import style from "../../common/Footer/Footer.module.scss";
+import styles from "../../common/Footer/Footer.module.scss";
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className={styles.footer}>
       <div className="footer-section">
         <h2>EV Events™</h2>
         <p>

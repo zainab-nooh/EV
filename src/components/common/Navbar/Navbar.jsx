@@ -1,29 +1,63 @@
-import { Link } from "react-router-dom";
-import "../../common/Navbar/Navbar.module.scss"; 
-import profile from "../../styles/6522516.png"; 
-import home from "../../styles/profile-removebg-preview.png";
-
-const Navbar = () => {
-  return (
-    <nav className="navbar">
-      <div className="navbar-container">
-        <ul className="navbar-menu">
-          <li className="navbar-item">
-            <img src={home} alt="Home" className="navbar-home-image" />
-          </li>
-          <li className="navbar-item">
-            <Link to="/new-booking" className="navbar-link">New Booking</Link>
-          </li>
-          <li className="navbar-item">
-            <Link to="/logout" className="navbar-link">Logout</Link>
-          </li>
-        </ul>
-        <div className="navbar-profile">
-          <img src={profile} alt="Profile" className="navbar-profile-image" />
-        </div>
-      </div>
-    </nav>
-  );
+$bg-main: #F7F9F9;
+$bg-alt: #D9E3E2;
+$text-main: #353B32;
+$accent: #7B9E89;
+.header {
+  background: $bg-main;
+  border-bottom: 2px solid $bg-alt;
+  padding: 0.75rem 2rem;
+  .header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+  .header-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    img {
+      height: 40px; // smaller logo
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+  .navbar {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    .navbar-menu {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar-link {
+      text-decoration: none;
+      color: $text-main;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      &:hover {
+        color: $accent;
+      }
+    }
+    .navbar-profile {
+      display: flex;
+      align-items: center;
+      .navbar-profile-image {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: 2px solid $accent;
+        object-fit: cover;
+        cursor: pointer;
+      }
+    }
+  }
 }
-
-export default Navbar;
