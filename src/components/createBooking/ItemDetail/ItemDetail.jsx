@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "./ItemDetail.scss";
 
 const ItemDetail = ({ item, onAddToCart }) => {
   if (!item) return <p>Loading item details...</p>;
 
   return (
-    <div className="item-detail">
+    <div className={styles.ItemDetail}>
       <img
         src={item.image || "/default-item.png"}
         alt={item.name}
