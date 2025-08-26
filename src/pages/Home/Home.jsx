@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import Navbar from "../../components/common/Navbar/Navbar";
 import Footer from "../../components/common/Footer/Footer";
 import styles from "../../pages/Home/Home.module.scss";
+import { getAll as getAllCategories  } from "../../utils/categories-api";
+import { getAll as getAllItems } from "../../utils/items-api"
 import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
@@ -18,17 +20,14 @@ export default function Homepage() {
   useEffect(() => {
     async function fetchCategories() {
       try {
-        const response = await fetch('/api/categories');
-        if (!response.ok) throw new Error('Failed to fetch categories');
-        const data = await response.json();
-        setCategories(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoadingCategories(false);
+        const cdata = await getAllCategories();
+        setCategories(cdata)
+      }
+      catch (error) {
+        setError(error.message)
       }
     }
-    fetchCategories();
+    fetchCategories()
   }, []);
 
   // Fetch random items (with pagination)
@@ -36,18 +35,15 @@ export default function Homepage() {
     async function fetchItems() {
       setLoadingItems(true);
       try {
-        const response = await fetch(`/api/items/random?page=${page}&limit=5`);
-        if (!response.ok) throw new Error('Failed to fetch items');
-        const data = await response.json();
-        setItems(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoadingItems(false);
+        const idata = await getAllItems()
+        setItems(idata)
+      }
+      catch (error) {
+        setError(error.message)
       }
     }
     fetchItems();
-  }, [page]);
+  }, []);
 
   const handleCategoryClick = (categoryId) => {
     navigate(`/categories/${categoryId}`);
@@ -75,10 +71,10 @@ export default function Homepage() {
                 className={styles.categoryCard}
                 onClick={() => handleCategoryClick(category._id)}
               >
-                <img 
-                  src={category.image || '/default-category.png'} 
-                  alt={category.name} 
-                  className={styles.categoryImage} 
+                <img
+                  src={category.image || '/default-category.png'}
+                  alt={category.name}
+                  className={styles.categoryImage}
                 />
                 <h3>{category.name}</h3>
               </div>
@@ -94,10 +90,10 @@ export default function Homepage() {
           <div className={styles.itemsGrid}>
             {items.map(item => (
               <div key={item._id} className={styles.itemCard}>
-                <img 
-                  src={item.image || '/default-item.png'} 
-                  alt={item.name} 
-                  className={styles.itemImage} 
+                <img
+                  src={item.image || '/default-item.png'}
+                  alt={item.name}
+                  className={styles.itemImage}
                 />
                 <h4>{item.name}</h4>
                 <p>{item.description}</p>
@@ -107,9 +103,9 @@ export default function Homepage() {
         )}
 
         {/* Next Button */}
-        <button 
-          className={styles.nextButton} 
-          onClick={handleNextItems} 
+        <button
+          className={styles.nextButton}
+          onClick={handleNextItems}
           disabled={loadingItems}
         >
           Next

@@ -9,6 +9,11 @@ function App() {
   const [user, setUser] = useState(getUser());
 
   return (
+    // <Router>
+    //   <Routes>
+    //     <Route path="/*" element={<Navigate to="/home" />} />
+    //   </Routes>
+    // </Router>
     <Router>
       <main>
         {user ? (

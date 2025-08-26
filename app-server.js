@@ -1,8 +1,9 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import morgan from 'morgan'
 import cors from 'cors';
-import auth from './middleware/auth.js'
+import ensureLoggedIn from './config/ensureLoggedIn.js'
 import jwt from './config/jwt.js'
 import homeRoutes from './routes/home.js'
 import userRoutes from './routes/users.js'
@@ -22,16 +23,16 @@ app.use((req, res, next) => {
     res.locals.data = {}
     next()
 })
+app.use(morgan('dev'))
 
 // // API Routes - these must come before the static file serving
-app.use('/api/home', homeRoutes)
+app.use('/api/home', jwt, ensureLoggedIn,homeRoutes)
 app.use('/api/users', userRoutes)
-app.use('/api/categories', categoryRoutes )
-app.use('/api/items', itemRoutes)
-app.use('/api/bookings', bookingRoutes)
+app.use('/api/categories', jwt, ensureLoggedIn,categoryRoutes )
+app.use('/api/items', jwt, ensureLoggedIn,itemRoutes)
+app.use('/api/bookings', jwt, ensureLoggedIn,bookingRoutes)
 
 // app.use('/api/users', userRoutes);
-// app.use('/api/items', checkToken, ensureLoggedIn, itemRoutes);
 // app.use('/api/orders', checkToken, ensureLoggedIn, orderRoutes);
 
 // Determine which directory to serve static files from
