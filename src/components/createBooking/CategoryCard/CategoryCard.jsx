@@ -1,18 +1,21 @@
-import{useNavigate}from'react-router-dom';
-import styles from'./CategoryCard.module.scss'
+import { useNavigate } from 'react-router-dom';
+import styles from './CategoryCard.module.scss';
 
-const CategoryCard=({category,onClick})=>{
-  const navigate=useNavigate()
-  const handleClick=() => {
-    if(onClick){
-      onClick(category)
-    }
-    else{
-      navigate(`/create-booking?category=${category._id}`)
-    }
-  }
+const CategoryCard = ({ category, onClick }) => {
+  const navigate = useNavigate();
 
-  return(
+  // ✅ Defensive check to avoid crashing
+  if (!category || !category.name) return null;
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick(category);
+    } else {
+      navigate(`/create-booking?category=${category._id}`);
+    }
+  };
+
+  return (
     <div className={styles.categoryCard} onClick={handleClick}>
       <div className={styles.categoryContent}>
 
@@ -40,10 +43,8 @@ const CategoryCard=({category,onClick})=>{
           />
         </svg>
       </div>
-      
     </div>
-  )
-    
-}
+  );
+};
 
-export default CategoryCard
+export default CategoryCard;
