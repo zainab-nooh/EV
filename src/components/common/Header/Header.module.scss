@@ -3,31 +3,43 @@ $bg-alt: #D9E3E2;
 $text-main: #353B32;
 $accent: #7B9E89;
 $link-hover: darken($accent, 12%);
+
 .header {
   background: $bg-main;
   border-bottom: 2px solid $bg-alt;
-  padding: 0.75rem 2rem; // slightly smaller for balance
+  padding: 1rem 1rem 1rem 2rem; // slightly smaller for balance
+  pa
+
   .header-container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    
+    // justify-content: space-between;
     gap: 2rem;
   }
-  .header-logo {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
+  
+  // .header-logo {
+  // // display: flex;
+  // // align-items: center;
+  // // text-decoration: none;
+  
+  
   img {
-    height: 40px;
-    width: 60px; // Set both dimensions
-    object-fit: contain; // Maintains aspect ratio within bounds
+    height: 6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // height: 10px;
+    // width: 60px; // Set both dimensions
+    // object-fit: contain; // Maintains aspect ratio within bounds
     transition: transform 0.3s ease;
-  }
-  &:hover img {
+  
+  &:hover {
     transform: scale(1.05);
   }
 }
-     }
+
+}
   

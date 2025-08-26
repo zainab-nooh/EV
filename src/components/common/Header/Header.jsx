@@ -7,7 +7,7 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles['header-container']}>
         {/* Logo */}
-        <Link to="/" className="header-logo">
+        <Link to="/home" className="header-logo">
          <img src={EV} alt="EV" />
         </Link>
       </div>
