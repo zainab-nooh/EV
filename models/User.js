@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 const Schema = mongoose.Schema;
 
-const SALT_R = 6;
+const SALT_ROUNDS = 6;
 const userSchema = new Schema({
     name: { type: String, required: true },
     email: { type: String, unique: true, trim: true, lowercase: true, required: true },

@@ -1,0 +1,141 @@
+@use "sass:color";
+
+$bg-main: #F7F9F9;
+$bg-alt: #D9E3E2;
+$text-main: #353B32;
+$accent: #7B9E89;
+$btn-bg: $accent;
+$btn-hover: color.adjust($accent, $lightness: -10%);
+$border-radius: 12px;
+$transition: 0.3s ease;
+
+.create-booking {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  font-family: sans-serif;
+  color: $text-main;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .cart-indicator {
+      font-weight: 600;
+      color: $accent;
+    }
+  }
+
+  &__content {
+    display: flex;
+    gap: 2rem;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
+  }
+
+  &__sidebar {
+    flex: 1;
+    background: $bg-alt;
+    padding: 1rem;
+    border-radius: $border-radius;
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__main {
+    flex: 3;
+
+    .items-header {
+      margin-bottom: 1rem;
+
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: $text-main;
+}
+
+.cart-summary {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: $bg-alt;
+  padding: 1rem 1.5rem;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    span {
+      font-weight: 600;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      background: $btn-bg;
+      color: #fff;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: background $transition;
+
+      &:hover {
+        background: $btn-hover;
+      }
+    }
+  }
+}
+
+// CategoryList & ItemList (basic cards styling)
+.category-card, .item-card {
+  background: $bg-main;
+  border-radius: $border-radius;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform $transition, box-shadow $transition;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: $border-radius;
+    margin-bottom: 0.5rem;
+  }
+
+  h3, h4 {
+    margin: 0.5rem 0;
+    color: $text-main;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: color.adjust($text-main, $lightness: 20%);
+  }
+}

@@ -1,13 +1,10 @@
-//App.jsx:
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useState } from 'react';
-import routes from './routes.js';   
+import routes from './routes.js';
 import { getUser } from './utils/users-service.js';
 import AuthPage from './pages/AuthPage/AuthPage.jsx';
-
 function App() {
   const [user, setUser] = useState(getUser());
-
   return (
     <Router>
       <main>
@@ -38,5 +35,25 @@ function App() {
     </Router>
   );
 }
-
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

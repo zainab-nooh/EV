@@ -1,7 +1,7 @@
 import './Category.js';
-const Schema = (await import('mongoose')).Schema;
+import { model, Schema} from 'mongoose'
 
-const item = new Schema({
+const itemSchema = new Schema({
   name: { type: String, required: true },
   picture: String,
   deatails: String,
@@ -11,4 +11,4 @@ const item = new Schema({
   timestamps: true
 });
 
-export default item;
+export default model('Item', itemSchema)

@@ -4,14 +4,11 @@ import styles from"../../common/Navbar/Navbar.module.scss";
 import { logOut } from '../../../utils/users-service'; // Import logout function
 import profile from '/Profile.png'
 import home from '/Home.png'
-
 const Navbar = ({ setUser }) => {
-    
     function handleLogOut() {
         logOut(); // Clear the token
         setUser(null); // Update the user state
     }
-
     return (
         <nav className={styles.navbar}>
         <div className="navbar-container">
@@ -42,5 +39,16 @@ const Navbar = ({ setUser }) => {
         </nav>
     );
 }
-
 export default Navbar;
+
+
+
+
+
+
+
+
+
+
+
+

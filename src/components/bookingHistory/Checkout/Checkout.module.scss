@@ -1,0 +1,136 @@
+
+.checkout-page {
+  background: #F7F9F9;
+  padding: 2rem;
+  border-radius: 12px;
+  color: #353B32;
+  .checkout-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      color: darken(#353B32, 20%);
+      font-size: 1rem;
+    }
+  }
+  .error-message {
+    background: #FFE0E0;
+    color: #B91C1C;
+    padding: 1rem;
+    border: 1px solid #FCA5A5;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    p {
+      margin: 0 0 0.5rem 0;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid #B91C1C;
+      color: #B91C1C;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      &:hover {
+        background: #B91C1C;
+        color: #fff;
+      }
+    }
+  }
+}
+/* Success Page */
+.checkout-success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  background: #F7F9F9;
+  color: #353B32;
+  .success-container {
+    background: #fff;
+    border: 1px solid #D9E3E2;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    .success-icon {
+      margin-bottom: 1rem;
+      svg {
+        display: inline-block;
+      }
+    }
+    .success-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #27AE60;
+    }
+    .success-message {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #353B32;
+    }
+    .order-summary {
+      text-align: left;
+      margin: 1.5rem 0;
+      background: #F7F9F9;
+      border: 1px solid #D9E3E2;
+      border-radius: 8px;
+      padding: 1rem;
+      h3 {
+        margin-bottom: 0.8rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #353B32;
+      }
+      .summary-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        span:first-child {
+          font-weight: 500;
+        }
+        .total-amount {
+          font-weight: 700;
+          color: #27AE60;
+        }
+      }
+    }
+    .success-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        border: none;
+        transition: background-color 0.2s ease;
+      }
+      .btn-primary {
+        background: #27AE60;
+        color: #fff;
+        &:hover {
+          background: darken(#27AE60, 10%);
+        }
+      }
+      .btn-secondary {
+        background: #D9E3E2;
+        color: #353B32;
+        &:hover {
+          background: darken(#D9E3E2, 7%);
+        }
+      }
+    }
+  }
+}

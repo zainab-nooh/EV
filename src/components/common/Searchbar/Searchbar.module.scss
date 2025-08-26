@@ -1,0 +1,101 @@
+
+
+$bg-main: #F7F9F9;
+$bg-alt: #D9E3E2;
+$text-main: #353B32;
+$accent: #7B9E89;
+$border-radius: 8px;
+$transition: 0.3s ease;
+
+.searchBar {
+  position: relative;
+  max-width: 500px;
+  margin: 1rem auto;
+  font-family: sans-serif;
+
+  .searchForm {
+    display: flex;
+    border: 1px solid $bg-alt;
+    border-radius: $border-radius;
+    overflow: hidden;
+    background: $bg-main;
+
+    .searchInput {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      color: $text-main;
+
+      &::placeholder {
+        color: lighten($text-main, 30%);
+      }
+    }
+
+    .searchButton {
+      background: $accent;
+      border: none;
+      color: white;
+      padding: 0 1rem;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        background: darken($accent, 10%);
+      }
+    }
+  }
+
+  .resultsList {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: $bg-main;
+    border: 1px solid $bg-alt;
+    border-radius: $border-radius;
+    margin-top: 0.25rem;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 10;
+    padding: 0;
+    list-style: none;
+
+    .resultItem {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        background: $bg-alt;
+      }
+
+      .resultImage {
+        height: 40px;
+        width: 40px;
+        border-radius: 6px;
+        object-fit: cover;
+        margin-right: 0.75rem;
+      }
+
+      span {
+        color: $text-main;
+        font-size: 0.95rem;
+
+        em {
+          font-style: italic;
+          color: lighten($text-main, 30%);
+        }
+      }
+    }
+  }
+
+  p {
+    margin-top: 0.5rem;
+    color: $text-main;
+    font-size: 0.9rem;
+  }
+}

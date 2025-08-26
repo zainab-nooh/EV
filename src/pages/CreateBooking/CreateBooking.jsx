@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import CategoryList from '../../components/createBooking/CategoryList/CategoryList';
 import ItemList from '../../components/createBooking/ItemList/ItemList';
-import '../styles/CreateBooking.scss';
+import styles from './CreateBooking.module.scss';
 
-const CreateBooking = () => {
+export default function CreateBooking() {
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -11,12 +11,12 @@ const CreateBooking = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch categories on component mount
+  // Fetch categories
   useEffect(() => {
     fetchCategories();
   }, []);
 
-  // Fetch items when category is selected
+  // Fetch items when category changes
   useEffect(() => {
     if (selectedCategory) {
       fetchItemsByCategory(selectedCategory._id);
@@ -26,27 +26,17 @@ const CreateBooking = () => {
   const fetchCategories = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/categories', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+      const res = await fetch('/api/categories', {
+        headers: { Authorization: `Bearer ${token}` }
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch categories');
-      }
-
-      const data = await response.json();
+      if (!res.ok) throw new Error('Failed to fetch categories');
+      const data = await res.json();
       setCategories(data.categories || []);
-      
-      // Select first category by default
-      if (data.categories && data.categories.length > 0) {
+      if (data.categories?.length > 0) {
         setSelectedCategory(data.categories[0]);
       }
     } catch (err) {
       setError(err.message);
-      console.error('Error fetching categories:', err);
     } finally {
       setLoading(false);
     }
@@ -56,22 +46,14 @@ const CreateBooking = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      const response = await fetch(`/api/items/category/${categoryId}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+      const res = await fetch(`/api/items/category/${categoryId}`, {
+        headers: { Authorization: `Bearer ${token}` }
       });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch items');
-      }
-
-      const data = await response.json();
+      if (!res.ok) throw new Error('Failed to fetch items');
+      const data = await res.json();
       setItems(data.items || []);
     } catch (err) {
       setError(err.message);
-      console.error('Error fetching items:', err);
     } finally {
       setLoading(false);
     }
@@ -82,44 +64,38 @@ const CreateBooking = () => {
   };
 
   const addToCart = (item) => {
-    setCart(prevCart => {
-      const existingItem = prevCart.find(cartItem => cartItem._id === item._id);
-      
-      if (existingItem) {
-        return prevCart.map(cartItem =>
-          cartItem._id === item._id
-            ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem
-        );
-      } else {
-        return [...prevCart, { ...item, quantity: 1 }];
-      }
+    setCart((prev) => {
+      const found = prev.find((ci) => ci._id === item._id);
+      return found
+        ? prev.map((ci) =>
+            ci._id === item._id ? { ...ci, quantity: ci.quantity + 1 } : ci
+          )
+        : [...prev, { ...item, quantity: 1 }];
     });
   };
 
-  const getCartItemCount = () => {
-    return cart.reduce((total, item) => total + item.quantity, 0);
-  };
+  const getCartItemCount = () =>
+    cart.reduce((total, item) => total + item.quantity, 0);
 
   if (loading && categories.length === 0) {
-    return <div className="loading">Loading categories...</div>;
+    return <div className={styles.loading}>Loading categories...</div>;
   }
 
   if (error) {
-    return <div className="error">Error: {error}</div>;
+    return <div className={styles.error}>Error: {error}</div>;
   }
 
   return (
-    <div className="create-booking">
-      <div className="create-booking__header">
-        <h1>Create Booking</h1>
-        <div className="cart-indicator">
-          Cart ({getCartItemCount()} items)
-        </div>
+    <div className={styles.CreateBooking}>
+      {/* Header */}
+      <div className={styles.sectionHeading}>
+        <span>CREATE BOOKING</span>
+        <span>Cart ({getCartItemCount()} items)</span>
       </div>
 
-      <div className="create-booking__content">
-        <div className="create-booking__sidebar">
+      <div className={styles.content}>
+        {/* Sidebar */}
+        <div className={styles.sidebar}>
           <h2>Categories</h2>
           <CategoryList
             categories={categories}
@@ -128,40 +104,38 @@ const CreateBooking = () => {
           />
         </div>
 
-        <div className="create-booking__main">
-          <div className="items-header">
-            <h2>
-              {selectedCategory ? `${selectedCategory.name} Items` : 'Select a Category'}
-            </h2>
-          </div>
-          
+        {/* Main Items List */}
+        <div className={`${styles.itemsContainer} flex-col scroll-y`}>
+          <h2>
+            {selectedCategory
+              ? `${selectedCategory.name} Items`
+              : 'Select a Category'}
+          </h2>
+
           {loading ? (
-            <div className="loading">Loading items...</div>
+            <div className={styles.loading}>Loading items...</div>
           ) : (
-            <ItemList
-              items={items}
-              onAddToCart={addToCart}
-              cart={cart}
-            />
+            <ItemList items={items} onAddToCart={addToCart} cart={cart} />
           )}
         </div>
       </div>
 
-      {cart.length > 0 && (
-        <div className="cart-summary">
-          <div className="cart-summary__content">
-            <span>Items in cart: {getCartItemCount()}</span>
-            <button 
-              className="btn btn-primary"
-              onClick={() => window.location.href = '/checkout'}
+      {/* Cart Summary */}
+      <section className={styles.total}>
+        {cart.length ? (
+          <>
+            <button
+              className="btn-sm"
+              onClick={() => (window.location.href = '/checkout')}
             >
-              Go to Checkout
+              CHECKOUT
             </button>
-          </div>
-        </div>
-      )}
+            <span>{getCartItemCount()} items</span>
+          </>
+        ) : (
+          <div className={styles.empty}>Cart is empty</div>
+        )}
+      </section>
     </div>
   );
-};
-
-export default CreateBooking;
+}

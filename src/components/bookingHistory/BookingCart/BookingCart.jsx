@@ -1,26 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import CartItem from '../CartItem/CartItem';
+import styles from './BookingCart.module.scss';
 
-const BookingCart = ({ onCheckout }) => {
+export default function BookingCart({ onCheckout }) {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Load cart from localStorage on component mount
-    loadCart();
+    const savedCart = localStorage.getItem('eventCart');
+    if (savedCart) setCartItems(JSON.parse(savedCart));
   }, []);
-
-  const loadCart = () => {
-    try {
-      const savedCart = localStorage.getItem('eventCart');
-      if (savedCart) {
-        setCartItems(JSON.parse(savedCart));
-      }
-    } catch (error) {
-      console.error('Error loading cart:', error);
-      setCartItems([]);
-    }
-  };
 
   const saveCart = (newCart) => {
     localStorage.setItem('eventCart', JSON.stringify(newCart));
@@ -28,10 +17,7 @@ const BookingCart = ({ onCheckout }) => {
   };
 
   const updateQuantity = (itemId, newQuantity) => {
-    if (newQuantity < 1) {
-      removeItem(itemId);
-      return;
-    }
+    if (newQuantity < 1) return removeItem(itemId);
 
     const updatedCart = cartItems.map(item =>
       item._id === itemId ? { ...item, quantity: newQuantity } : item
@@ -44,15 +30,11 @@ const BookingCart = ({ onCheckout }) => {
     saveCart(updatedCart);
   };
 
-  const calculateTotal = () => {
-    return cartItems.reduce((total, item) => {
-      return total + (item.price * item.quantity);
-    }, 0);
-  };
+  const calculateTotal = () =>
+    cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
   const handleCheckout = async () => {
-    if (cartItems.length === 0) return;
-
+    if (!cartItems.length) return;
     setLoading(true);
     try {
       const bookingData = {
@@ -63,17 +45,12 @@ const BookingCart = ({ onCheckout }) => {
         })),
         totalAmount: calculateTotal()
       };
-
-      if (onCheckout) {
-        await onCheckout(bookingData);
-      }
-
-      // Clear cart after successful checkout
+      if (onCheckout) await onCheckout(bookingData);
       localStorage.removeItem('eventCart');
       setCartItems([]);
-    } catch (error) {
-      console.error('Checkout error:', error);
-      alert('There was an error processing your order. Please try again.');
+    } catch (err) {
+      console.error(err);
+      alert('Error processing your order. Try again.');
     } finally {
       setLoading(false);
     }
@@ -86,14 +63,14 @@ const BookingCart = ({ onCheckout }) => {
     }
   };
 
-  if (cartItems.length === 0) {
+  if (!cartItems.length) {
     return (
-      <div className="booking-cart empty">
-        <div className="empty-cart">
+      <div className={styles.bookingCart}>
+        <div className={styles.empty}>
           <h2>Your cart is empty</h2>
-          <p>Add some items to your cart to get started!</p>
-          <button 
-            className="btn btn-primary"
+          <p>Add some items to get started!</p>
+          <button
+            className={styles.btnPrimary}
             onClick={() => window.location.href = '/create-booking'}
           >
             Start Shopping
@@ -104,11 +81,11 @@ const BookingCart = ({ onCheckout }) => {
   }
 
   return (
-    <div className="booking-cart">
-      <div className="cart-header">
+    <div className={styles.bookingCart}>
+      <div className={styles.cartHeader}>
         <h2>Your Cart</h2>
-        <button 
-          className="btn btn-outline"
+        <button
+          className={styles.btnOutline}
           onClick={clearCart}
           disabled={loading}
         >
@@ -116,7 +93,7 @@ const BookingCart = ({ onCheckout }) => {
         </button>
       </div>
 
-      <div className="cart-items">
+      <div className={`${styles.cartItems} flex-col scroll-y`}>
         {cartItems.map(item => (
           <CartItem
             key={item._id}
@@ -125,30 +102,19 @@ const BookingCart = ({ onCheckout }) => {
             onRemove={removeItem}
           />
         ))}
-      </div>
 
-      <div className="cart-summary">
-        <div className="summary-row">
-          <span>Subtotal:</span>
-          <span>${calculateTotal().toFixed(2)}</span>
-        </div>
-        <div className="summary-row total">
-          <span>Total:</span>
-          <span>${calculateTotal().toFixed(2)}</span>
-        </div>
-      </div>
-
-      <div className="cart-actions">
-        <button
-          className="btn btn-primary btn-large"
-          onClick={handleCheckout}
-          disabled={loading || cartItems.length === 0}
-        >
-          {loading ? 'Processing...' : `Checkout ($${calculateTotal().toFixed(2)})`}
-        </button>
+        <section className={styles.cartSummary}>
+          <span>Total Items: {cartItems.length}</span>
+          <span className={styles.right}>${calculateTotal().toFixed(2)}</span>
+          <button
+            className={styles.btnPrimary}
+            onClick={handleCheckout}
+            disabled={loading || !cartItems.length}
+          >
+            {loading ? 'Processing...' : 'Checkout'}
+          </button>
+        </section>
       </div>
     </div>
   );
-};
-
-export default BookingCart;
+}
