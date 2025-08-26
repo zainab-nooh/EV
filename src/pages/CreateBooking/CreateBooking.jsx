@@ -5,7 +5,6 @@ import Footer from '../../components/common/Footer/Footer';
 import CategoryList from '../../components/createBooking/CategoryList/CategoryList';
 import ItemList from '../../components/createBooking/ItemList/ItemList';
 import styles from './CreateBooking.module.scss';
-import styles from './CreateBooking.module.scss';
 
 export default function CreateBooking({ setUser }) {
   const [categories, setCategories] = useState([]);
@@ -16,12 +15,10 @@ export default function CreateBooking({ setUser }) {
   const [error, setError] = useState(null);
 
   // Fetch categories
-  // Fetch categories
   useEffect(() => {
     fetchCategories();
   }, []);
 
-  // Fetch items when category changes
   // Fetch items when category changes
   useEffect(() => {
     if (selectedCategory) {
@@ -34,15 +31,10 @@ export default function CreateBooking({ setUser }) {
       const token = localStorage.getItem('token');
       const res = await fetch('/api/categories', {
         headers: { Authorization: `Bearer ${token}` }
-      const res = await fetch('/api/categories', {
-        headers: { Authorization: `Bearer ${token}` }
       });
       if (!res.ok) throw new Error('Failed to fetch categories');
       const data = await res.json();
-      if (!res.ok) throw new Error('Failed to fetch categories');
-      const data = await res.json();
       setCategories(data.categories || []);
-      if (data.categories?.length > 0) {
       if (data.categories?.length > 0) {
         setSelectedCategory(data.categories[0]);
       }
@@ -59,11 +51,7 @@ export default function CreateBooking({ setUser }) {
       const token = localStorage.getItem('token');
       const res = await fetch(`/api/items/category/${categoryId}`, {
         headers: { Authorization: `Bearer ${token}` }
-      const res = await fetch(`/api/items/category/${categoryId}`, {
-        headers: { Authorization: `Bearer ${token}` }
       });
-      if (!res.ok) throw new Error('Failed to fetch items');
-      const data = await res.json();
       if (!res.ok) throw new Error('Failed to fetch items');
       const data = await res.json();
       setItems(data.items || []);
@@ -86,28 +74,17 @@ export default function CreateBooking({ setUser }) {
             ci._id === item._id ? { ...ci, quantity: ci.quantity + 1 } : ci
           )
         : [...prev, { ...item, quantity: 1 }];
-    setCart((prev) => {
-      const found = prev.find((ci) => ci._id === item._id);
-      return found
-        ? prev.map((ci) =>
-            ci._id === item._id ? { ...ci, quantity: ci.quantity + 1 } : ci
-          )
-        : [...prev, { ...item, quantity: 1 }];
     });
   };
 
   const getCartItemCount = () =>
     cart.reduce((total, item) => total + item.quantity, 0);
-  const getCartItemCount = () =>
-    cart.reduce((total, item) => total + item.quantity, 0);
 
   if (loading && categories.length === 0) {
-    return <div className={styles.loading}>Loading categories...</div>;
     return <div className={styles.loading}>Loading categories...</div>;
   }
 
   if (error) {
-    return <div className={styles.error}>Error: {error}</div>;
     return <div className={styles.error}>Error: {error}</div>;
   }
 
