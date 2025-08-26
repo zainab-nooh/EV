@@ -2,26 +2,39 @@ import { Link } from "react-router-dom";
 import styles from"../../common/Navbar/Navbar.module.scss";
 import profile from '/Profile.png'
 import home from '/Home.png'
- const Navbar = props => {
+import { logOut } from '../../../utils/users-service'; // Import logout function
+
+const Navbar = ({ setUser, ...props }) => { // Accept setUser as prop
+    
+    const handleLogOut = () => {
+        logOut(); // Clear token from localStorage
+        setUser(null); // Update user state to null
+    };
+
     return (
         <nav className={styles.navbar}>
-        <div className="navbar-container">
-            <ul className="navbar-menu">
-            <li className="navbar-item">
-            {/* <img src={home} alt="Home" className="navbar-home-image"/>  */}
-                <Link to="/home" className="navbar-link">Home</Link>
+        <div className={styles.navbarContainer}>
+            <ul className={styles.navbarMenu}>
+            <li className={styles.navbarItem}>
+            {/* <img src={home} alt="Home" className={styles.navbarHomeImage}/>  */}
+                <Link to="/home" className={styles.navbarLink}>Home</Link>
              </li>
-            <li className="navbar-item">
-                <Link to="/bookings/new" className="navbar-link">New Booking</Link>
+            <li className={styles.navbarItem}>
+                <Link to="/bookings/new" className={styles.navbarLink}>New Booking</Link>
             </li>
-            <li className="navbar-item">
-                <Link to="/profile" className="navbar-link">Profile</Link>
+            <li className={styles.navbarItem}>
+                <Link to="/profile" className={styles.navbarLink}>Profile</Link>
             </li>
-            <li className="navbar-item">
-                <Link to="/bookings/history" className="navbar-link">Booking History</Link>
+            <li className={styles.navbarItem}>
+                <Link to="/bookings/history" className={styles.navbarLink}>Booking History</Link>
             </li>
-            <li className="navbar-item">
-                <Link to="/auth" className="navbar-link">Logout</Link>
+            <li className={styles.navbarItem}>
+                <button 
+                    onClick={handleLogOut} 
+                    className={styles.navbarLink}
+                >
+                    Logout
+                </button>
             </li>
             </ul>
             {/* <div className="navbar-profile">
@@ -30,11 +43,6 @@ import home from '/Home.png'
         </div>
         </nav>
     );
- }
-    export default Navbar;
+}
 
-
-
-
-
-
+export default Navbar;

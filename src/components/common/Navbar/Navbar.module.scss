@@ -3,43 +3,55 @@ $bg-alt: #D9E3E2;
 $text-main: #353B32;
 $accent: #7B9E89;
 
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 
-  .navbar {
+  .navbar-container {
+    width: 100%;
+  }
+
+  .navbar-menu {
     display: flex;
-    align-items: center;
     gap: 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
-    .navbar-menu {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
+  .navbar-item {
+    // No additional styles needed here
+  }
 
-    .navbar-link {
-      text-decoration: none;
-      color: $text-main;
-      font-weight: 500;
-      transition: color 0.3s ease;
+  .navbar-link {
+    text-decoration: none;
+    color: $text-main;
+    font-weight: 500;
+    transition: color 0.4s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+    font-size: inherit;
 
-      &:hover {
-        color: $accent;
-      }
-    }
-
-    .navbar-profile {
-      display: flex;
-      align-items: center;
-
-      .navbar-profile-image {
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        border: 2px solid $accent;
-        object-fit: cover;
-        cursor: pointer;
-      }
+    &:hover {
+      color: $accent;
     }
   }
 
+  .navbar-profile {
+    display: flex;
+    align-items: center;
+
+    .navbar-profile-image {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      border: 2px solid $accent;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+}
