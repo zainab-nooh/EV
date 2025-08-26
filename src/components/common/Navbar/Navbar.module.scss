@@ -3,14 +3,11 @@ $bg-alt: #D9E3E2;
 $text-main: #353B32;
 $accent: #7B9E89;
 
+
 .navbar {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-
-  .navbar-container {
-    width: 100%;
-  }
 
   .navbar-menu {
     display: flex;
@@ -21,7 +18,13 @@ $accent: #7B9E89;
   }
 
   .navbar-item {
-    // No additional styles needed here
+
+    &:button {
+      text-decoration: none;
+      color: $text-main;
+      font-weight: 500;
+      transition: color 0.4s ease;
+    }
   }
 
   .navbar-link {
@@ -29,12 +32,6 @@ $accent: #7B9E89;
     color: $text-main;
     font-weight: 500;
     transition: color 0.4s ease;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    font-family: inherit;
-    font-size: inherit;
 
     &:hover {
       color: $accent;
