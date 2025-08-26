@@ -1,5 +1,7 @@
+//src/components/common/navbar/navbar.jsx
 import { Link } from "react-router-dom";
 import styles from"../../common/Navbar/Navbar.module.scss";
+import { logOut } from '../../../utils/users-service'; // Import logout function
 import profile from '/Profile.png'
 import home from '/Home.png'
 import { logOut } from '../../../utils/users-service'; // Import logout function

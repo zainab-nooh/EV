@@ -24,13 +24,22 @@ export default class SignUpForm extends Component {
       const formData = {...this.state};
       delete formData.confirm;
       delete formData.error;
+      
+      // Debug: Log the form data being sent
+      console.log('Attempting signup with data:', formData);
+      
       // The promise returned by the signUp service method
       // will resolve to the user object included in the
       // payload of the JSON Web Token (JWT)
       const user = await signUp(formData);
+      console.log('Signup successful, user:', user);
+      
       // Baby step
       this.props.setUser(user);
-    } catch {
+    } catch (error) {
+      // Debug: Log the actual error
+      console.error('Signup error:', error);
+      
       // An error happened on the server
       this.setState({ error: 'Sign Up Failed - Try Again' });
     }
