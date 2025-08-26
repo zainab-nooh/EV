@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import style from "./CreateHistory.module.scss";  
 
 const CreateHistory = ({ onCreateBooking, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -50,28 +51,28 @@ const CreateHistory = ({ onCreateBooking, onCancel }) => {
   };
 
   return (
-    <div className="create-history">
-      <div className="create-history__container">
-        <div className="create-history__header">
+    <div className={style.createHistory}>
+      <div className={style.createHistoryContainer}>
+        <div className={style.createHistoryHeader}>
           <h2>Create Manual Booking</h2>
           <p>Add booking details manually to the system</p>
         </div>
 
         {error && (
-          <div className="error-message">
+          <div className={style.errorMessage}>
             <p>{error}</p>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="create-history__form">
-          <div className="form-group">
+        <form onSubmit={handleSubmit} className={style.createHistoryForm}>
+          <div className={style.formGroup}>
             <label htmlFor="status">Booking Status</label>
             <select
               id="status"
               name="status"
               value={formData.status}
               onChange={handleInputChange}
-              className="form-control"
+              className={style.formControl}
             >
               <option value="pending">Pending</option>
               <option value="confirmed">Confirmed</option>
@@ -80,28 +81,28 @@ const CreateHistory = ({ onCreateBooking, onCancel }) => {
             </select>
           </div>
 
-          <div className="form-group">
+          <div className={style.formGroup}>
             <label htmlFor="notes">Notes (Optional)</label>
             <textarea
               id="notes"
               name="notes"
               value={formData.notes}
               onChange={handleInputChange}
-              className="form-control"
+              className={style.formControl}
               rows="4"
               placeholder="Add any additional notes about this booking..."
             />
           </div>
 
-          <div className="items-section">
+          <div className={style.itemsSection}>
             <h3>Booking Items</h3>
-            <p className="items-note">
+            <p className={style.itemsNote}>
               Note: This is a simplified form. In a full implementation, you would
               typically select items from your inventory and specify quantities.
             </p>
             
-            <div className="items-placeholder">
-              <div className="placeholder-content">
+            <div className={style.itemsPlaceholder}>
+              <div className={style.placeholderContent}>
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
                   <rect x="8" y="12" width="32" height="24" rx="2" stroke="#ccc" strokeWidth="2"/>
                   <path d="M16 20h16M16 26h12M16 32h20" stroke="#ccc" strokeWidth="2" strokeLinecap="round"/>
@@ -112,18 +113,18 @@ const CreateHistory = ({ onCreateBooking, onCancel }) => {
             </div>
           </div>
 
-          <div className="form-actions">
+          <div className={style.formActions}>
             <button
               type="button"
               onClick={onCancel}
-              className="btn btn-secondary"
+              className={`${style.btn} ${style.btnSecondary}`}
               disabled={loading}
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="btn btn-primary"
+              className={`${style.btn} ${style.btnPrimary}`}
               disabled={loading}
             >
               {loading ? 'Creating...' : 'Create Booking'}
