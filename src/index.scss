@@ -95,36 +95,3 @@ img {
 .flex-col { flex-direction: column; }
 .flex-j-end { justify-content: flex-end; }
 .scroll-y { overflow-y: scroll; }
-@import './components/common/Header/Header.module.scss';
-@import './components/common/Navbar/Navbar.module.scss';
-@import './components/common/Footer/Footer.module.scss';
-@import './components/common/Searchbar/Searchbar.module.scss';
-
-
-
-
-@import './components/auth/Login/Login.module.scss';
-@import './components/auth/Signup/Signup.module.scss';
-
-@import './components/createBooking/ItemDetail//ItemDetail.module.scss';
-@import './components/createBooking/CategoryCard//CategoryCard.module.scss';
-@import './components/createBooking//CategoryList/CategoryList.module.scss';
-@import './components/createBooking/ItemCard/ItemCard.module.scss';
-@import './components/createBooking/ItemList/ItemList.module.scss';
-@import './components/createBooking/ItemDetail//ItemDetail.module.scss';
-
-@import './components/bookingHistory/BookingHistory/BookingHistory.module.scss';
-@import './components/bookingHistory/BookingCart/BookingCart.module.scss';
-@import './components/bookingHistory/BookingDetail/BookingDetail.module.scss';
-@import './components/bookingHistory/CartItem/CartItem.module.scss';
-@import './components/bookingHistory/CreateHistory/CreateHistory.module.scss';
-@import './components/bookingHistory/Checkout/Checkout.module.scss';
-
-@import './pages/Home/Home.module.scss';
-@import './pages/BookingHistory/BookingHistory.module.scss';
-@import './pages/CreateBooking/CreateBooking.module.scss';
-@import './pages/Profile//Profile.module.scss';
-@import './pages/NotFound/NotFound.module.scss';
-@import './pages/AuthPage/AuthPage.module.scss';
-
-
