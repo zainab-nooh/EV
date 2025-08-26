@@ -4,6 +4,7 @@ import Navbar from '../../components/common/Navbar/Navbar';
 import Footer from '../../components/common/Footer/Footer';
 import CategoryList from '../../components/createBooking/CategoryList/CategoryList';
 import ItemList from '../../components/createBooking/ItemList/ItemList';
+import BookingCart from '../../components/bookingHistory/BookingCart/BookingCart';
 import styles from './CreateBooking.module.scss';
 
 export default function CreateBooking({ setUser }) {
@@ -11,8 +12,31 @@ export default function CreateBooking({ setUser }) {
   const [items, setItems] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Load cart from localStorage on component mount
+  useEffect(() => {
+    const savedCart = localStorage.getItem('eventCart');
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch (err) {
+        console.error('Error loading cart:', err);
+        localStorage.removeItem('eventCart');
+      }
+    }
+  }, []);
+
+  // Save cart to localStorage whenever cart changes
+  useEffect(() => {
+    if (cart.length > 0) {
+      localStorage.setItem('eventCart', JSON.stringify(cart));
+    } else {
+      localStorage.removeItem('eventCart');
+    }
+  }, [cart]);
 
   // Fetch categories
   useEffect(() => {
@@ -69,16 +93,60 @@ export default function CreateBooking({ setUser }) {
   const addToCart = (item) => {
     setCart((prev) => {
       const found = prev.find((ci) => ci._id === item._id);
-      return found
-        ? prev.map((ci) =>
-            ci._id === item._id ? { ...ci, quantity: ci.quantity + 1 } : ci
-          )
-        : [...prev, { ...item, quantity: 1 }];
+      if (found) {
+        return prev.map((ci) =>
+          ci._id === item._id ? { ...ci, quantity: ci.quantity + 1 } : ci
+        );
+      } else {
+        return [...prev, { ...item, quantity: 1 }];
+      }
     });
+    
+    // Show success message
+    alert(`${item.name} added to cart!`);
   };
 
   const getCartItemCount = () =>
     cart.reduce((total, item) => total + item.quantity, 0);
+
+  const getCartTotal = () =>
+    cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+  const handleCheckout = async (bookingData) => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(bookingData)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create booking');
+      }
+
+      const result = await response.json();
+      
+      // Clear cart after successful checkout
+      setCart([]);
+      localStorage.removeItem('eventCart');
+      setShowCart(false);
+      
+      alert('Booking created successfully! Starting new event.');
+      
+      return result;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      throw error;
+    }
+  };
+
+  const toggleCart = () => {
+    setShowCart(!showCart);
+  };
 
   if (loading && categories.length === 0) {
     return <div className={styles.loading}>Loading categories...</div>;
@@ -99,7 +167,12 @@ export default function CreateBooking({ setUser }) {
         {/* Page Title */}
         <div className={styles.sectionHeading}>
           <span>CREATE BOOKING</span>
-          <span>Cart ({getCartItemCount()} items)</span>
+          <button 
+            className={styles.cartToggle}
+            onClick={toggleCart}
+          >
+            Cart ({getCartItemCount()} items) - ${getCartTotal().toFixed(2)}
+          </button>
         </div>
 
         <div className={styles.content}>
@@ -135,17 +208,35 @@ export default function CreateBooking({ setUser }) {
             <>
               <button
                 className="btn-sm"
-                onClick={() => (window.location.href = '/checkout')}
+                onClick={toggleCart}
               >
-                CHECKOUT
+                {showCart ? 'HIDE CART' : 'VIEW CART'}
               </button>
-              <span>{getCartItemCount()} items</span>
+              <span>{getCartItemCount()} items - ${getCartTotal().toFixed(2)}</span>
             </>
           ) : (
             <div className={styles.empty}>Cart is empty</div>
           )}
         </section>
       </main>
+
+      {/* Cart Popup */}
+      {showCart && (
+        <div className={styles.cartOverlay}>
+          <div className={styles.cartPopup}>
+            <div className={styles.cartHeader}>
+              <h2>Your Event Cart</h2>
+              <button 
+                className={styles.closeBtn}
+                onClick={() => setShowCart(false)}
+              >
+                ×
+              </button>
+            </div>
+            <BookingCart onCheckout={handleCheckout} />
+          </div>
+        </div>
+      )}
 
       {/* Footer */}
       <Footer />
