@@ -143,111 +143,149 @@ This project is developed by a team of 6 developers:
 
 ## 📁 Complete Project Structure
 
-```
-EV/                                    # Root project directory
-├── .env                              # Environment variables (API keys, DB config)
+```EV/                                    # Root project directory
+├── .env                              # Environment variables (DB URI, JWT secret, API keys, etc.)
 ├── .gitignore                        # Git ignore rules  
-├── package.json                      # Root package.json with scripts
+├── package.json                      # Root package.json with scripts & dependencies
 ├── package-lock.json                 # Dependency lock file
-├── README.md                         # Project documentation (this file)
-├── eslint.config.js                  # ESLint configuration
-├── index.html                        # Main HTML file
+├── README.md                         # Project documentation
+├── eslint.config.js                  # ESLint configuration for code linting
+├── index.html                        # Main HTML entry file for Vite/React
 ├── vite.config.js                    # Vite build configuration
-├── app-server.js                     # Main server file
+├── app-server.js                     # Main Express server configuration (can serve both API & client)
 ├── server.js                         # Alternative server entry point
 │
-├── public/                           # Static assets
+├── public/                           # Static assets served directly
 │   └── vite.svg                     # Vite logo
 │
-├── src/                             # Main React source code
-│   ├── App.css                      # Main app styling
-│   ├── App.jsx                      # Root React component
-│   ├── main.jsx                     # React entry point
-│   ├── index.css                    # Global CSS styles
-│   └── assets/                      # Static assets
-│       └── react.svg                # React logo
+├── config/                           # Backend configuration files
+│   ├── database.js                   # MongoDB connection setup
+│   └── jwt.js                        # JWT configuration & utilities
 │
-├── server/                          # Backend directory
-│   ├── .env                        # Server environment variables
-│   ├── package.json                # Server dependencies
-│   ├── server.js                   # Express server entry point
-│   │
-│   ├── config/                     # Configuration files
-│   │   ├── database.js             # MongoDB connection setup
-│   │   └── jwt.js                  # JWT configuration & utilities
-│   │
-│   ├── controllers/                # Business logic controllers
-│   │   ├── bookingController.js    # Booking CRUD operations
-│   │   ├── categoryController.js   # Category management logic
-│   │   ├── itemController.js       # Item/service management
-│   │   └── userController.js       # User management & auth
-│   │
-│   ├── middleware/                 # Express middleware
-│   │   └── auth.js                # Authentication middleware
-│   │
-│   ├── models/                    # Database schemas (Mongoose)
-│   │   ├── Booking.js            # Booking schema & validation
-│   │   ├── Category.js           # Category schema
-│   │   ├── Item.js               # Item/service schema
-│   │   └── User.js               # User schema & methods
-│   │
-│   ├── routes/                   # API route handlers
-│   │   ├── bookings.js          # Booking API endpoints
-│   │   ├── categories.js        # Category API endpoints
-│   │   ├── items.js             # Item API endpoints
-│   │   └── users.js             # User API endpoints
-│   │
-│   └── utils/                   # Utility functions
-│       └── seed.js              # Database seeding script
+├── controllers/                      # Business logic controllers
+│   ├── bookingController.js          # Booking CRUD operations
+│   ├── categoryController.js         # Category management logic
+│   ├── itemController.js             # Item/service management
+│   └── userController.js             # User management & authentication
 │
-├── client/                      # Frontend directory (if separate)
-│   ├── components/              # Reusable React components
-│   │   │
-│   │   ├── auth/               # Authentication components
-│   │   │   ├── Login.jsx       # User login form
-│   │   │   ├── Profile.jsx     # User profile management
-│   │   │   └── Signup.jsx      # User registration form
-│   │   │
-│   │   ├── bookingHistory/     # Booking management components
-│   │   │   ├── BookingCart.js    # Shopping cart component
-│   │   │   ├── BookingDetail.js  # Individual booking details
-│   │   │   ├── BookingHistory.js # Booking history list
-│   │   │   ├── CartItem.js       # Individual cart item
-│   │   │   ├── Checkout.js       # Checkout process
-│   │   │   └── CreateHistory.js  # Create booking history entry
-│   │   │
-│   │   ├── common/             # Shared/reusable components
-│   │   │   ├── Footer.js       # Application footer
-│   │   │   ├── Header.js       # Application header
-│   │   │   ├── Navbar.js       # Navigation bar
-│   │   │   └── SearchBar.js    # Search functionality
-│   │   │
-│   │   └── createBooking/      # Marketplace components
-│   │       ├── CategoryCard.js   # Individual category display
-│   │       ├── CategoryList.js   # Category listing
-│   │       ├── ItemCard.js       # Individual item display
-│   │       ├── ItemDetail.js     # Detailed item view
-│   │       └── ItemList.js       # Item listing grid
-│   │
-│   ├── pages/                  # Full page components
-│   │   ├── BookingHistory.jsx  # Complete booking history page
-│   │   ├── Createbooking.jsx   # Marketplace/shopping page
-│   │   ├── Home.jsx           # Homepage/dashboard
-│   │   ├── NotFound.jsx       # 404 error page
-│   │   └── Profile.jsx        # User profile page
-│   │
-│   └── styles/                # CSS stylesheets
-│       ├── index.css          # Global styles
-│       ├── BookingHistory.css # Booking history page styles
-│       ├── common.css         # Common component styles
-│       ├── CreateBooking.css  # Marketplace page styles
-│       ├── Login.css          # Login form styles
-│       ├── Profile.css        # Profile page styles
-│       └── Signup.css         # Registration form styles
+├── middleware/                       # Express middleware
+│   └── auth.js                       # Authentication & token validation middleware
 │
-└── node_modules/              # Dependencies (git ignored)
-
-Total Files: 61 files across 19 directories
+├── models/                           # Database schemas (Mongoose models)
+│   ├── Booking.js                    # Booking schema & validation
+│   ├── Category.js                   # Category schema
+│   ├── Item.js                       # Item/service schema
+│   └── User.js                       # User schema & password hashing methods
+│
+├── routes/                           # API route handlers
+│   ├── bookings.js                   # Booking API endpoints
+│   ├── categories.js                 # Category API endpoints
+│   ├── items.js                      # Item API endpoints
+│   └── users.js                      # User API endpoints
+│
+├── src/                              # React frontend source code
+│   ├── App.jsx                       # Root React component
+│   ├── main.jsx                      # React entry point (mounts App to DOM)
+│   ├── index.scss                    # Global SCSS styles
+│   │
+│   ├── assets/                       # Static assets (images, icons, etc.)
+│   │   └── react.svg                 # React logo
+│   │
+│   ├── components/                   # Reusable React components
+│   │   │
+│   │   ├── auth/                     # Authentication components
+│   │   │   ├── Login/                
+│   │   │   │   ├── Login.jsx         # Login form
+│   │   │   │   └── Login.module.scss # Login styles (SCSS modules)
+│   │   │   └── Signup/
+│   │   │       ├── Signup.jsx        # Signup form
+│   │   │       └── Signup.module.scss# Signup styles
+│   │   │
+│   │   ├── bookingHistory/           # Booking history & cart components
+│   │   │   ├── BookingCart/          
+│   │   │   │   ├── BookingCart.jsx   # Cart for bookings
+│   │   │   │   └── BookingCart.scss  # Styles
+│   │   │   ├── BookingDetail/
+│   │   │   │   ├── BookingDetail.jsx # Single booking details
+│   │   │   │   └── BookingDetail.scss
+│   │   │   ├── BookingHistory/
+│   │   │   │   ├── BookingHistory.jsx# List of all past bookings
+│   │   │   │   └── BookingHistory.scss
+│   │   │   ├── CartItem/
+│   │   │   │   ├── CartItem.jsx      # Single item in cart
+│   │   │   │   └── CartItem.scss
+│   │   │   ├── Checkout/
+│   │   │   │   ├── Checkout.jsx      # Checkout process component
+│   │   │   │   └── Checkout.scss
+│   │   │   └── CreateHistory/
+│   │   │       ├── CreateHistory.jsx # Add new booking history
+│   │   │       └── CreateHistory.scss
+│   │   │
+│   │   ├── common/                   # Shared components
+│   │   │   ├── Footer/               
+│   │   │   │   ├── Footer.jsx        # Footer
+│   │   │   │   └── Footer.module.scss
+│   │   │   ├── Header/
+│   │   │   │   ├── Header.jsx        # Header
+│   │   │   │   └── Header.module.scss
+│   │   │   ├── Navbar/
+│   │   │   │   ├── Navbar.jsx        # Navigation bar
+│   │   │   │   └── Navbar.module.scss
+│   │   │   └── Searchbar/
+│   │   │       ├── Searchbar.jsx     # Search bar component
+│   │   │       └── Searchbar.module.scss
+│   │   │
+│   │   └── createBooking/            # Components for booking flow
+│   │       ├── CategoryCard/         
+│   │       │   ├── CategoryCard.jsx  # Displays single category
+│   │       │   └── CategoryCard.module.scss
+│   │       ├── CategoryList/
+│   │       │   ├── CategoryList.jsx  # Lists categories
+│   │       │   └── CategoryList.module.scss
+│   │       ├── ItemCard/
+│   │       │   ├── ItemCard.jsx      # Displays single item
+│   │       │   └── ItemCard.module.scss
+│   │       ├── ItemDetail/
+│   │       │   ├── ItemDetail.jsx    # Item detailed view
+│   │       │   └── ItemDetail.module.scss
+│   │       └── ItemList/
+│   │           ├── ItemList.jsx      # List of all items
+│   │           └── ItemList.module.scss
+│   │
+│   ├── pages/                        # Full page views
+│   │   ├── AuthPage/                 
+│   │   │   ├── AuthPage.jsx          # Authentication page (login/signup wrapper)
+│   │   │   └── AuthPage.module.scss
+│   │   ├── BookingHistory/
+│   │   │   ├── BookingHistory.jsx    # Booking history page
+│   │   │   └── BookingHistory.module.scss
+│   │   ├── CreateBooking/
+│   │   │   ├── CreateBooking.jsx     # Booking creation page
+│   │   │   └── CreateBooking.module.scss
+│   │   ├── Home/
+│   │   │   ├── Home.jsx              # Homepage/dashboard
+│   │   │   └── Home.module.scss
+│   │   ├── NotFound/
+│   │   │   ├── NotFound.jsx          # 404 page
+│   │   │   └── NotFound.module.scss
+│   │   └── Profile/
+│   │       ├── Profile.jsx           # User profile page
+│   │       └── Profile.module.scss
+│   │
+│   ├── styles/                       # Project-wide styles & assets
+│   │   ├── 6522516.png               # Image
+│   │   ├── EV-Black-Version.png      # Logo
+│   │   └── profile-removebg-preview.png # Profile placeholder
+│   │
+│   └── utils/                        # Frontend utility functions
+│       ├── bookings-api.js           # Booking API calls
+│       ├── categories-api.js         # Category API calls
+│       ├── items-api.js              # Item API calls
+│       ├── users-api.js              # User API calls
+│       ├── users-service.js          # User service (auth helpers)
+│       ├── send-request.js           # Wrapper for fetch/axios
+│       └── seed.js                   # Data seeding utility
+└──
 ```
 
 ## 🎨 Event Categories & Services

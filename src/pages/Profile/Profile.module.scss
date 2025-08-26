@@ -1,5 +1,5 @@
-// Profile.module.scss
-.useState{
+@use "sass:color";
+
 $bg-main: #F7F9F9;
 $bg-alt: #D9E3E2;
 $text-main: #353B32;
@@ -39,8 +39,7 @@ $transition: 0.3s ease;
 
   p {
     font-size: 1rem;
-    color: lighten($text-main, 10%);
+    color: color.adjust($text-main, $lightness: 10%);
     margin-bottom: 0;
   }
-}
 }

@@ -1,50 +1,134 @@
-// common.scss
+// common.scss - Modern SCSS with enhanced features
 
-$bg-main: #F7F9F9;   
-$bg-alt: #D9E3E2;    
-$text-main: #353B32; 
-$accent: #7B9E89;    
-$link-hover: darken($accent, 12%);
-$border-radius: 12px;
+// Design tokens using CSS custom properties for better runtime flexibility
+:root {
+  --bg-main: #f7f9f9;
+  --bg-alt: #d9e3e2;
+  --text-main: #353b32;
+  --accent: #7b9e89;
+  --link-hover: #6b8a77;
+  --border-radius: 12px;
+  --shadow-subtle: 0 2px 8px rgba(53, 59, 50, 0.05);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+// Modern color utilities using color-mix for dynamic variations
+@function lighten-color($color, $amount: 10%) {
+  @return color-mix(in srgb, #{$color} #{100% - $amount}, white #{$amount});
+}
+
+@function darken-color($color, $amount: 12%) {
+  @return color-mix(in srgb, #{$color} #{100% - $amount}, black #{$amount});
+}
+
+// Responsive mixins with modern approach
+@mixin respond-to($breakpoint) {
+  @container (min-width: #{$breakpoint}) {
+    @content;
+  }
+}
+
+@mixin respond-to-screen($breakpoint) {
+  @media (min-width: #{$breakpoint}) {
+    @content;
+  }
+}
+
+// Enhanced footer with modern features
 .footer {
-  background: $bg-main;
-  color: $text-main;
-  padding: 3rem 2rem;
+  background: var(--bg-main);
+  color: var(--text-main);
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+  
+  // Modern grid with subgrid support fallback
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+  container-type: inline-size;
+  
+  // Subtle elevation
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+  
+  // Optional: Modern backdrop filter effect
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(1px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
 
   .footer-section {
+    // Modern spacing with logical properties
+    padding-block: 0;
+    padding-inline: clamp(0.5rem, 2vw, 1rem);
+    
     h2 {
-      font-size: 1.3rem;
-      margin-bottom: 0.75rem;
-      color: $accent;
+      font-size: clamp(1.2rem, 3vw, 1.4rem);
+      margin-block-end: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      
+      // Modern text balance
+      text-wrap: balance;
     }
 
     p {
-      font-size: 0.95rem;
+      font-size: clamp(0.9rem, 2.5vw, 0.95rem);
       line-height: 1.6;
-      color: $text-main;
+      color: var(--text-main);
       opacity: 0.85;
+      text-wrap: pretty;
+      max-inline-size: 65ch;
     }
 
     ul {
       list-style: none;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
 
       li {
-        margin-bottom: 0.6rem;
-
         a {
           text-decoration: none;
-          color: $text-main;
+          color: var(--text-main);
           font-weight: 500;
-          transition: 0.3s ease;
+          transition: var(--transition-smooth);
+          display: inline-block;
+          position: relative;
+          
+          // Modern focus styles
+          &:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+          }
 
-          &:hover {
-            color: $link-hover;
-            text-decoration: underline;
+          // Hover effects with better performance
+          &:hover,
+          &:focus {
+            color: var(--link-hover);
+            transform: translateX(4px);
+          }
+          
+          // Optional: Modern underline animation
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--link-hover);
+            transition: width 0.3s ease;
+          }
+          
+          &:hover::after {
+            width: 100%;
           }
         }
       }
@@ -54,11 +138,75 @@ $border-radius: 12px;
   .footer-bottom {
     grid-column: 1 / -1;
     text-align: center;
-    padding-top: 1.5rem;
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    border-top: 1px solid rgba(53, 59, 50, 0.2);
-    color: $text-main;
+    padding-block-start: 1.5rem;
+    margin-block-start: 1.5rem;
+    font-size: clamp(0.8rem, 2vw, 0.85rem);
+    
+    // Modern border using logical properties
+    border-block-start: 1px solid color-mix(in srgb, var(--text-main) 20%, transparent);
+    color: var(--text-main);
     opacity: 0.7;
+    
+    // Better text rendering
+    font-variant-numeric: tabular-nums;
+  }
+  
+  // Container query support for responsive design
+  @container (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+    .footer-section {
+      padding-inline: 1rem;
+    }
+  }
+  
+  // Screen media query fallback
+  @include respond-to-screen(768px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+// Dark mode support with modern approach
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-main: #1a1f1e;
+    --bg-alt: #2d3735;
+    --text-main: #e8ece9;
+    --accent: #9bb8a5;
+    --link-hover: #b5d0c1;
+  }
+}
+
+// Reduced motion respect
+@media (prefers-reduced-motion: reduce) {
+  .footer {
+    .footer-section ul li a {
+      transition: none;
+      
+      &:hover {
+        transform: none;
+      }
+      
+      &::after {
+        transition: none;
+      }
+    }
+  }
+}
+
+// High contrast mode support
+@media (prefers-contrast: high) {
+  .footer {
+    --shadow-subtle: none;
+    border: 2px solid var(--text-main);
+    
+    .footer-section ul li a {
+      &:hover,
+      &:focus {
+        background: var(--accent);
+        color: var(--bg-main);
+        padding-inline: 0.25rem;
+      }
+    }
   }
 }
