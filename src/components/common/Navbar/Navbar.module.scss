@@ -3,35 +3,6 @@ $bg-alt: #D9E3E2;
 $text-main: #353B32;
 $accent: #7B9E89;
 
-.header {
-  background: $bg-main;
-  border-bottom: 2px solid $bg-alt;
-  padding: 0.75rem 2rem;
-
-  .header-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-
-  .header-logo {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-
-    img {
-      height: 40px; // smaller logo
-      width: auto;
-      transition: transform 0.3s ease;
-    }
-
-    &:hover img {
-      transform: scale(1.05);
-    }
-  }
 
   .navbar {
     display: flex;
@@ -71,4 +42,4 @@ $accent: #7B9E89;
       }
     }
   }
-}
+
