@@ -10,6 +10,8 @@ import userRoutes from './routes/users.js'
 import categoryRoutes from './routes/categories.js'
 import itemRoutes from './routes/items.js'
 import bookingRoutes from './routes/bookings.js'
+import profileRoutes from './routes/profile.js';
+
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -31,6 +33,8 @@ app.use('/api/users', userRoutes)
 app.use('/api/categories', jwt, ensureLoggedIn,categoryRoutes )
 app.use('/api/items', jwt, ensureLoggedIn,itemRoutes)
 app.use('/api/bookings', jwt, ensureLoggedIn,bookingRoutes)
+app.use('/api/users', profileRoutes);
+
 
 // app.use('/api/users', userRoutes);
 // app.use('/api/orders', checkToken, ensureLoggedIn, orderRoutes);
