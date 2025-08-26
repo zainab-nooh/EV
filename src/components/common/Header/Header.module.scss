@@ -1,17 +1,20 @@
-// common.scss
+// Header.module.scss - Fixed version without deprecation warnings
 
-$bg-main: #F7F9F9;
-$bg-alt: #D9E3E2;
-$text-main: #353B32;
-$accent: #7B9E89;
-$link-hover: darken($accent, 12%);
+// Option 1: Use modern CSS custom properties (RECOMMENDED)
+:root {
+  --bg-main: #f7f9f9;
+  --bg-alt: #d9e3e2;
+  --text-main: #353b32;
+  --accent: #7b9e89;
+  --link-hover: #6b8a77; // Pre-calculated darker value
+}
 
 .header {
-  background: $bg-main;
-  border-bottom: 2px solid $bg-alt;
+  background: var(--bg-main);
+  border-bottom: 2px solid var(--bg-alt);
   padding: 1rem 2rem;
 
-  .header-container {
+  .headerContainer {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -19,13 +22,13 @@ $link-hover: darken($accent, 12%);
     justify-content: space-between;
   }
 
-  .header-logo {
+  .headerLogo {
     display: flex;
     align-items: center;
     text-decoration: none;
 
     img {
-      height: 50px; // adjust as needed
+      height: 50px;
       width: auto;
       transition: transform 0.3s ease;
     }
@@ -35,3 +38,46 @@ $link-hover: darken($accent, 12%);
     }
   }
 }
+
+// // ==========================================
+// // Alternative Option 2: Use new Sass syntax
+// // ==========================================
+
+// @use 'sass:color';
+
+// $bg-main: #f7f9f9;
+// $bg-alt: #d9e3e2;
+// $text-main: #353b32;
+// $accent: #7b9e89;
+// // Use the new color.adjust function instead of darken()
+// $link-hover: color.adjust($accent, $lightness: -12%);
+
+// .headerAlt {
+//   background: $bg-main;
+//   border-bottom: 2px solid $bg-alt;
+//   padding: 1rem 2rem;
+
+//   .headerContainer {
+//     max-width: 1200px;
+//     margin: 0 auto;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//   }
+
+//   .headerLogo {
+//     display: flex;
+//     align-items: center;
+//     text-decoration: none;
+
+//     img {
+//       height: 50px;
+//       width: auto;
+//       transition: transform 0.3s ease;
+//     }
+
+//     &:hover img {
+//       transform: scale(1.05);
+//     }
+//   }
+// }

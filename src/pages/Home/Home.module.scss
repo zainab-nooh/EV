@@ -1,4 +1,4 @@
-.useState{
+@use "sass:color";
 
 $bg-main: #F7F9F9;
 $bg-alt: #D9E3E2;
@@ -61,7 +61,7 @@ $transition: 0.3s ease;
 
   p {
     font-size: 0.9rem;
-    color: lighten($text-main, 20%);
+    color: color.adjust($text-main, $lightness: 20%);
   }
 }
 
@@ -78,13 +78,11 @@ $transition: 0.3s ease;
   transition: $transition;
 
   &:hover:not(:disabled) {
-    background: darken($accent, 10%);
+    background: color.adjust($accent, $lightness: -10%);
   }
 
   &:disabled {
-    background: lighten($accent, 20%);
+    background: color.adjust($accent, $lightness: 20%);
     cursor: not-allowed;
   }
-}
-
 }
