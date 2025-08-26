@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import Header from '../../components/common/Header/Header'
 import Navbar from "../../components/common/Navbar/Navbar";
 import Footer from "../../components/common/Footer/Footer";
+import Searchbar from "../../components/common/Searchbar/Searchbar"
 import styles from "../../pages/Home/Home.module.scss";
 import { getAll as getAllCategories  } from "../../utils/categories-api";
 import { getAll as getAllItems } from "../../utils/items-api"
@@ -43,7 +45,7 @@ export default function Homepage() {
       }
     }
     fetchItems();
-  }, []);
+  }, [page]);
 
   const handleCategoryClick = (categoryId) => {
     navigate(`/categories/${categoryId}`);
@@ -57,7 +59,9 @@ export default function Homepage() {
 
   return (
     <>
+    <Header />
       <Navbar />
+      <Searchbar />
       <main className={styles.mainContent}>
         {/* Categories Section */}
         <h1>Available Categories</h1>

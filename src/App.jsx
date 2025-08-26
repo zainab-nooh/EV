@@ -26,7 +26,7 @@ function App() {
                   element={<Component page={key} user={user} setUser={setUser} />}
                 />
               ))}
-              <Route path="/*" element={<Navigate to="/home" />} />
+              {/* <Route path="/*" element={<Navigate to="/home" />} /> */}
             </Routes>
           </>
         ) : (
