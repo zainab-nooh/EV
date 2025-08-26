@@ -28,37 +28,5 @@ $link-hover: darken($accent, 12%);
       transform: scale(1.05);
     }
   }
-  .navbar {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    .navbar-menu {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    .navbar-link {
-      text-decoration: none;
-      color: $text-main;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      &:hover {
-        color: $accent;
-      }
-    }
-    .navbar-profile {
-      display: flex;
-      align-items: center;
-      .navbar-profile-image {
-        height: 40px;
-        width: 40px;
-        border-radius: 50%;
-        border: 2px solid $accent;
-        object-fit: cover;
-        cursor: pointer;
-      }
-    }
-  }
-}
+     }
+  
