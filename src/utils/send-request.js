@@ -1,25 +1,33 @@
 import { getToken } from './users-service';
-
 export default async function sendRequest(url, method = 'GET', payload = null) {
-  // Fetch takes an optional options object as the 2nd argument
-  // used to include a data payload, set headers, etc.
-    console.log('are you running?')
+  console.log(`Making ${method} request to: ${url}`);
+  console.log('Payload:', payload);
   const options = { method };
   if (payload) {
     options.headers = { 'Content-Type': 'application/json' };
     options.body = JSON.stringify(payload);
   }
   const token = getToken();
-  console.log(token)
+  console.log('Token:', token);
   if (token) {
-    // Ensure headers object exists
     options.headers = options.headers || {};
-    // Add token to an Authorization header
-    // Prefacing with 'Bearer' is recommended in the HTTP specification
     options.headers.Authorization = `Bearer ${token}`;
   }
-  const res = await fetch(url, options);
-  // res.ok will be false if the status code set to 4xx in the controller action
-  if (res.ok) return res.json();
-  throw new Error('Bad Request');
+  try {
+    const res = await fetch(url, options);
+    console.log('Response status:', res.status);
+    console.log('Response ok:', res.ok);
+    if (res.ok) {
+      const data = await res.json();
+      console.log('Response data:', data);
+      return data;
+    }
+    // Get more detailed error information
+    const errorText = await res.text();
+    console.error('Error response:', errorText);
+    throw new Error(`Request failed: ${res.status} ${res.statusText} - ${errorText}`);
+  } catch (error) {
+    console.error('Network error:', error);
+    throw error;
+  }
 }
