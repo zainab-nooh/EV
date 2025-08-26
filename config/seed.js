@@ -21,7 +21,7 @@ dotenv.config();
   await Item.deleteMany({});
   const items = await Item.create([
     {name: 'Conference Hall', picture: '🏢',deatails:'details' ,category: categories[0], price: 300},
-    {name: '🏨 Hotel Ballroom', picture: '🏨',deatails:'details' , category: categories[0], price: 299},
+    {name: 'Hotel Ballroom', picture: '🏨',deatails:'details' , category: categories[0], price: 299},
     {name: 'Private Villa', picture: '🏠',deatails:'details', category: categories[0], price: 250},
     {name: 'Stage Platform', picture: '🎤',deatails:'details', category: categories[1], price: 100},
     {name: 'Special Effects', picture: '🎇',deatails:'details', category: categories[1], price: 60},
