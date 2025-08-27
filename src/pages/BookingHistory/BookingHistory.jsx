@@ -244,6 +244,7 @@ const BookingHistory = ({ setUser }) => {
             ) : (
               <div className={styles.selectPrompt}>
                 <h2>Select an event to view details</h2>
+                <h2>Select an event to view details</h2>
                 <p>Choose an event from the left to see its full details</p>
               </div>
             )}
