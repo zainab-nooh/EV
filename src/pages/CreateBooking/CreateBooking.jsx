@@ -160,7 +160,6 @@ export default function CreateBooking({ setUser }) {
     <>
       {/* Common Layout */}
       <Header />
-      <Navbar setUser={setUser} />
 
       {/* Page Content */}
       <main className={styles.CreateBooking}>

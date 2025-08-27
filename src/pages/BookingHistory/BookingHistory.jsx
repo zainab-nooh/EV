@@ -132,7 +132,6 @@ const BookingHistory = ({ setUser }) => {
     return (
       <>
         <Header />
-        <Navbar setUser={setUser} />
         <div className={styles.container}>
           <div className={styles.loading}>Loading booking history...</div>
         </div>
