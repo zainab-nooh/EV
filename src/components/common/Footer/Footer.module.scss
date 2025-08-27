@@ -162,6 +162,8 @@ $gradient-accent: linear-gradient(135deg, #7b9e89 0%, #9bb8a5 100%);
       gap: 0.2rem;
 
       li {
+        margin-bottom: 0.6rem;
+
         a {
           text-decoration: none;
           color: $text-main;
