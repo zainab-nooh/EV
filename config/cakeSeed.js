@@ -21,7 +21,7 @@ import cake12 from '../public/Cakes/cake12.png';
       {
         name: 'Aries queen',
         picture: cake1,
-        deatails: '',
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 23
       },
@@ -29,77 +29,77 @@ import cake12 from '../public/Cakes/cake12.png';
       {
         name: 'Black Ribbons',
         picture: cake2,
-        deatails: '',
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 16
       },
             {
         name: 'I heart cherries',
         picture: cake3,
-        deatails: '',
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 25
       },
             {
         name: 'Break Up',
         picture: cake4,
-        deatails: '',
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 14
       },
             {
         name: 'Queen of hearts',
         picture: cake5,
-        deatails: '',
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 17
       },
             {
         name: 'Future Mrs.',
         picture: cake6,
-        deatails: '',
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 16
       },
             {
         name: '20s Retro ',
         picture: cake7,
-        deatails: '',
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 18
       },
             {
         name: 'Big 40',
         picture: cake8,
-        deatails: '',
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 22
       },
             {
         name: 'Bride Classic',
         picture: cake9,
-        deatails: '',
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 14
       },
                   {
         name: 'Pink Ribbons',
-        picture: cake9,
-        deatails: '',
+        picture: cake10,
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 17
       },
                   {
         name: 'Leo Season',
-        picture: cake9,
-        deatails: '',
+        picture: cake11,
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 17
       },
                   {
         name: 'Retro Skies',
-        picture: cake9,
-        deatails: '',
+        picture: cake12,
+        deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 16
       },
