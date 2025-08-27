@@ -1,49 +1,40 @@
-import{useNavigate}from'react-router-dom';
-import styles from'./CategoryCard.module.scss'
-
-const CategoryCard=({category,onClick})=>{
-  const navigate=useNavigate()
-  const handleClick=() => {
-    if(onClick){
-      onClick(category)
+import React from 'react';
+import styles from './CategoryCard.module.scss';
+export default function CategoryCard({ item: category, isSelected, onSelect }) {
+  const handleClick = () => {
+    if (onSelect) {
+      onSelect(category);
     }
-    else{
-      navigate(`/create-booking?category=${category._id}`)
-    }
-  }
-
-  return(
-    <div className={styles.categoryCard} onClick={handleClick}>
-      <div className={styles.categoryContent}>
-
-        <div className={styles.categoryIcon}>
-          <span className={styles.iconPlaceholder}>
-            {category.name.charAt(0).toUpperCase()}
-          </span>
-        </div>
-
-        <div className={styles.categoryInfo}>
-          <h3 className={styles.categoryName}>{category.name}</h3>
-          <span className={styles.categoryLabel}>Browse Items</span>
-        </div>
-
-      </div>
-
-      <div className={styles.arrow}>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-          <path 
-            d="M6 12L10 8L6 4" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
+  };
+  return (
+    <div
+      className={`${styles.categoryCard} ${isSelected ? styles.selected : ''}`}
+      onClick={handleClick}
+    >
+      <div className={styles.categoryImageWrapper}>
+        {category.image ? (
+          <img
+            src={category.image}
+            alt={category.name}
+            className={styles.categoryImage}
           />
-        </svg>
+        ) : (
+          <div className={styles.imagePlaceholder}>
+            <span className={styles.placeholderText}>:file_folder:</span>
+          </div>
+        )}
       </div>
-      
+      <div className={styles.categoryInfo}>
+        <h3 className={styles.categoryName}>{category.name}</h3>
+        {category.description && (
+          <p className={styles.categoryDescription}>{category.description}</p>
+        )}
+      </div>
+      {isSelected && (
+        <div className={styles.selectedIndicator}>
+          ✓
+        </div>
+      )}
     </div>
-  )
-    
+  );
 }
-
-export default CategoryCard

@@ -1,0 +1,119 @@
+:root {
+  --white: ghostwhite;
+  --bg-main: #F7F9F9;
+  --bg-alt: #D9E3E2;
+
+  --tan-1: #FBF9F6;
+  --tan-2: #E7E2DD;
+  --tan-3: #E2D9D1;
+  --tan-4: #D3C1AE;
+
+  --text-light: #968C84;
+  --text-dark: #353B32;
+
+  --accent: #7B9E89;
+  --link-hover: #6B8A77;
+
+  --orange: orangered;
+}
+
+
+$primary-color: #3498DB;
+$secondary-color: #2ECC71;
+$text-color: #353B32;
+
+$border-radius: 8px;
+$shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+
+@mixin button-style($bg-color, $text-color: white) {
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: $border-radius;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin card-style {
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  padding: 20px;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+
+@mixin frosted-glass($blur: 6px, $bg: rgba(255, 255, 255, 0.3)) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border-radius: $border-radius;
+}
+
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+a {
+  text-decoration: none;
+  color: var(--text-dark);
+  transition: color 0.3s ease;
+  &:hover {
+    color: var(--link-hover);
+  }
+}
+ul {
+  list-style: none;
+}
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.text-center { text-align: center; }
+.align-ctr   { text-align: center; }
+.align-rt    { text-align: right; }
+.smaller     { font-size: smaller; }
+
+.flex-ctr-ctr { @include flex-center; }
+.flex-col     { flex-direction: column; }
+.flex-j-end   { justify-content: flex-end; }
+
+.scroll-y { overflow-y: auto; }
