@@ -20,17 +20,24 @@ export default function Homepage({setUser}) {
 
   // Fetch categories
   useEffect(() => {
-    async function fetchCategories() {
-      try {
-        const cdata = await getAllCategories();
-        setCategories(cdata)
-      }
-      catch (error) {
-        setError(error.message)
-      }
+      fetchCategories();
+    }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('/api/categories', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!res.ok) throw new Error('Failed to fetch categories');
+      const data = await res.json();
+      setCategories(data.categories || []);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-    fetchCategories()
-  }, []);
+  };
 
   // Fetch random items (with pagination)
   useEffect(() => {
@@ -56,7 +63,6 @@ export default function Homepage({setUser}) {
   };
 
   if (error) return <p>Error: {error}</p>;
-
   return (
     <>
     <Header setUser={setUser} />
@@ -65,8 +71,7 @@ export default function Homepage({setUser}) {
         {/* Categories Section */}
         <h1>Available Categories</h1>
         {loadingCategories ? (
-          <p>Loading categories...</p>
-        ) : (
+
           <div className={styles.categoriesGrid}>
             {categories.map(category => (
               <div
@@ -83,6 +88,8 @@ export default function Homepage({setUser}) {
               </div>
             ))}
           </div>
+        ) : (
+          <p>Loading categories...</p>
         )}
 
         {/* Random Items Section */}
