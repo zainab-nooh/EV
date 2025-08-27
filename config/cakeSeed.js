@@ -1,0 +1,105 @@
+import cake1 from '../public/Cakes/cake1.png';
+import cake2 from '../public/Cakes/cake2.png';
+import cake3 from '../public/Cakes/cake3.png';
+import cake4 from '../public/Cakes/cake4.png';
+import cake5 from '../public/Cakes/cake5.png';
+import cake6 from '../public/Cakes/cake6.png';
+import cake7 from '../public/Cakes/cake7.png';
+import cake8 from '../public/Cakes/cake8.png';
+import cake9 from '../public/Cakes/cake9.png';
+import cake10 from '../public/Cakes/cake10.png';
+import cake11 from '../public/Cakes/cake11.png';
+import cake12 from '../public/Cakes/cake12.png';
+
+
+
+
+
+
+
+
+      {
+        name: 'Aries queen',
+        picture: cake1,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 23
+      },
+      
+      {
+        name: 'Black Ribbons',
+        picture: cake2,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 16
+      },
+            {
+        name: 'I heart cherries',
+        picture: cake3,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 25
+      },
+            {
+        name: 'Break Up',
+        picture: cake4,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 14
+      },
+            {
+        name: 'Queen of hearts',
+        picture: cake5,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 17
+      },
+            {
+        name: 'Future Mrs.',
+        picture: cake6,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 16
+      },
+            {
+        name: '20s Retro ',
+        picture: cake7,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 18
+      },
+            {
+        name: 'Big 40',
+        picture: cake8,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 22
+      },
+            {
+        name: 'Bride Classic',
+        picture: cake9,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 14
+      },
+                  {
+        name: 'Pink Ribbons',
+        picture: cake9,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 17
+      },
+                  {
+        name: 'Leo Season',
+        picture: cake9,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 17
+      },
+                  {
+        name: 'Retro Skies',
+        picture: cake9,
+        deatails: '',
+        category: cateringCategory._id,
+        price: 16
+      },
