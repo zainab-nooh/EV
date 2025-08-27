@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './BookingHistory.module.scss';
-
 const BookingHistory = ({setUser}) => {
   const [bookings, setBookings] = useState([]);
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -10,11 +9,9 @@ const BookingHistory = ({setUser}) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const bookingId = searchParams.get('bookingId');
-
   useEffect(() => {
     fetchBookingHistory();
   }, []);
-
   useEffect(() => {
     if (bookingId && bookings.length > 0) {
       const booking = bookings.find(b => b._id === bookingId);
@@ -25,7 +22,6 @@ const BookingHistory = ({setUser}) => {
       setSelectedBooking(bookings[0]);
     }
   }, [bookingId, bookings]);
-
   const fetchBookingHistory = async () => {
     try {
       setLoading(true);
@@ -70,7 +66,6 @@ const BookingHistory = ({setUser}) => {
       setLoading(false);
     }
   };
-
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -80,7 +75,6 @@ const BookingHistory = ({setUser}) => {
       minute: '2-digit'
     });
   };
-
   const getStatusClass = (status) => {
     switch (status) {
       case 'completed': return styles.statusCompleted;
@@ -90,12 +84,10 @@ const BookingHistory = ({setUser}) => {
       default: return styles.statusDefault;
     }
   };
-
   const handleBookingSelect = (booking) => {
     setSelectedBooking(booking);
     navigate(`/booking-history?bookingId=${booking._id}`);
   };
-
   if (loading) {
     return (
       <div className={styles.container}>
@@ -103,7 +95,6 @@ const BookingHistory = ({setUser}) => {
       </div>
     );
   }
-
   if (error) {
     return (
       <div className={styles.container}>
@@ -111,7 +102,6 @@ const BookingHistory = ({setUser}) => {
       </div>
     );
   }
-
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Booking History</h1>
@@ -159,7 +149,6 @@ const BookingHistory = ({setUser}) => {
             </div>
           )}
         </div>
-
         {/* Right Content - Booking Details */}
         <div className={styles.details}>
           {selectedBooking ? (
@@ -170,7 +159,6 @@ const BookingHistory = ({setUser}) => {
                   {selectedBooking.status.charAt(0).toUpperCase() + selectedBooking.status.slice(1)}
                 </span>
               </div>
-
               <div className={styles.orderInfo}>
                 <div className={styles.infoRow}>
                   <span className={styles.label}>Order Date:</span>
@@ -187,7 +175,6 @@ const BookingHistory = ({setUser}) => {
                   </div>
                 )}
               </div>
-
               <div className={styles.itemsSection}>
                 <h3>Items Ordered</h3>
                 <div className={styles.itemsList}>
@@ -209,7 +196,6 @@ const BookingHistory = ({setUser}) => {
                   ))}
                 </div>
               </div>
-
               <div className={styles.actionsSection}>
                 <button 
                   className={styles.reorderBtn}
@@ -240,5 +226,4 @@ const BookingHistory = ({setUser}) => {
     </div>
   );
 };
-
 export default BookingHistory;

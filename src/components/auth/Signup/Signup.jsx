@@ -1,7 +1,6 @@
 import { Component } from "react";
 import style from "../Signup/Signup.module.scss";
 import { signUp } from '../../../utils/users-service'
-
 export default class SignUpForm extends Component {
   state = {
     name: '',
@@ -10,41 +9,34 @@ export default class SignUpForm extends Component {
     confirm: '',
     error: ''
   };
-
   handleChange = (evt) => {
     this.setState({
       [evt.target.name]: evt.target.value,
       error: ''
     });
   };
-
   handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
       const formData = {...this.state};
       delete formData.confirm;
       delete formData.error;
-      
       // Debug: Log the form data being sent
       console.log('Attempting signup with data:', formData);
-      
       // The promise returned by the signUp service method
       // will resolve to the user object included in the
       // payload of the JSON Web Token (JWT)
       const user = await signUp(formData);
       console.log('Signup successful, user:', user);
-      
       // Baby step
       this.props.setUser(user);
     } catch (error) {
       // Debug: Log the actual error
       console.error('Signup error:', error);
-      
       // An error happened on the server
       this.setState({ error: 'Sign Up Failed - Try Again' });
     }
   };
-
   // We must override the render method
   // The render method is the equivalent to a function-based component
   // (its job is to return the UI)
@@ -52,7 +44,7 @@ export default class SignUpForm extends Component {
     const disable = this.state.password !== this.state.confirm;
     return (
       <div>
-        <div className="form-container">
+        <div  className={style.SignUpForm}>
           <form autoComplete="off" onSubmit={this.handleSubmit}>
             <label>Name</label>
             <input type="text" name="name" value={this.state.name} onChange={this.handleChange} required />
@@ -64,7 +56,7 @@ export default class SignUpForm extends Component {
             <input type="password" name="confirm" value={this.state.confirm} onChange={this.handleChange} required />
             <button type="submit" disabled={disable}>SIGN UP</button>
           </form>
-        </div>
+       </div>
         <p className="error-message">&nbsp;{this.state.error}</p>
       </div>
     );

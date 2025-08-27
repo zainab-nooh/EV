@@ -60,7 +60,6 @@ export default function Homepage({setUser}) {
   return (
     <>
     <Header />
-      <Navbar setUser={setUser} />
       <Searchbar />
       <main className={styles.mainContent}>
         {/* Categories Section */}

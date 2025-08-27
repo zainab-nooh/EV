@@ -1,19 +1,17 @@
+
 import { useState } from 'react';
 import * as usersService from '../../../utils/users-service';
 import style from "../Login/Login.module.scss";
-
 export default function LoginForm({ setUser }) {
   const [credentials, setCredentials] = useState({
     email: '',
     password: ''
   });
   const [error, setError] = useState('');
-
   function handleChange(evt) {
     setCredentials({ ...credentials, [evt.target.name]: evt.target.value });
     setError('');
   }
-
   async function handleSubmit(evt) {
     // Prevent form from being submitted to the server
     evt.preventDefault();
@@ -27,10 +25,9 @@ export default function LoginForm({ setUser }) {
       setError('Log In Failed - Try Again');
     }
   }
-
   return (
     <div>
-      <div className="form-container">
+      <div className={style.LoginForm}>
         <form autoComplete="off" onSubmit={handleSubmit}>
           <label>Email</label>
           <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
