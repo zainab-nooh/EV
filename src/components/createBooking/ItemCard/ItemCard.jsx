@@ -23,9 +23,9 @@ export default function ItemCard({ item, onAddToCart, cart }) {
     <div className={styles.itemCard}>
       {/* Item Image */}
       <div className={styles.itemImageWrapper}>
-        {item.image && !imageError ? (
+        {item.picture && !imageError ? (
           <img
-            src={item.image}
+            src={item.picture}
             alt={item.name}
             onError={handleImageError}
             loading="lazy"

@@ -53,7 +53,7 @@ const BookingDetail = ({ booking, onReorder, formatDate, getStatusClass }) => {
               <div className={styles.itemImage}>
                 {bookingItem.item?.picture || bookingItem.item?.image ? (
                   <img 
-                    src={bookingItem.item.picture || bookingItem.item.image} 
+                    src={bookingItem.item.picture || bookingItem.item.picture} 
                     alt={bookingItem.item.name}
                     onError={(e) => {
                       e.target.style.display = 'none';
