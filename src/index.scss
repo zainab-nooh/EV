@@ -3,23 +3,29 @@
   --white: ghostwhite;
   --bg-main: #F7F9F9;
   --bg-alt: #D9E3E2;
+
   --tan-1: #FBF9F6;
   --tan-2: #E7E2DD;
   --tan-3: #E2D9D1;
   --tan-4: #D3C1AE;
-  --text-light: #968c84;
+
+  --text-light: #968C84;
   --text-dark: #353B32;
+
   --accent: #7B9E89;
   --link-hover: #6B8A77;
+
   --orange: orangered;
 }
 
 
-$primary-color: #3498db;
-$secondary-color: #2ecc71;
+$primary-color: #3498DB;
+$secondary-color: #2ECC71;
 $text-color: #353B32;
+
 $border-radius: 8px;
 $shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
 
 @mixin button-style($bg-color, $text-color: white) {
   background-color: $bg-color;
@@ -56,7 +62,15 @@ $shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
-*, *:before, *:after {
+@mixin frosted-glass($blur: 6px, $bg: rgba(255, 255, 255, 0.3)) {
+  background: $bg;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border-radius: $border-radius;
+}
+
+
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -97,45 +111,20 @@ img {
   height: auto;
 }
 
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-.text-center {
-  text-align: center;
-}
+.text-center { text-align: center; }
+.align-ctr   { text-align: center; }
+.align-rt    { text-align: right; }
+.smaller     { font-size: smaller; }
 
-
-.align-ctr { text-align: center; }
-.align-rt { text-align: right; }
-.smaller { font-size: smaller; }
 .flex-ctr-ctr { @include flex-center; }
-.flex-col { flex-direction: column; }
-.flex-j-end { justify-content: flex-end; }
-.scroll-y { overflow-y: scroll; }
+.flex-col     { flex-direction: column; }
+.flex-j-end   { justify-content: flex-end; }
 
-
-@import './components/Header/Header.module.scss';
-@import './components/Navbar/Navbar.module.scss';
-@import './components/ItemDetail/ItemDetail.scss';
-@import './components/CategoryCard/CategoryCard.module.scss';
-@import './components/CategoryList/CategoryList.scss';
-@import './components/createBooking/ItemCard/ItemCard.module.scss';
-@import './components/createBooking/ItemList/ItemList.module.scss';
-@import './components/createBooking/CreateBooking.module.scss';
-@import './components/bookingHistory/BookingHistory.module.scss';
-@import './components/bookingHistory/Checkout/Checkout.module.scss';
-@import './pages/Home/Home.module.scss';
-@import './pages/BookingHistory/BookingHistory.module.scss';
-@import './pages/CreateBooking/CreateBooking.module.scss';
-@import './pages/ItemDetailPage/ItemDetailPage.module.scss';
-@import './pages/Login/Login.module.scss';
-@import './pages/NotFound/NotFound.module.scss';
-@import './pages/Signup/Signup.module.scss';
-@import './components/common/Footer/Footer.module.scss';
-@import './components/common/Loader/Loader.module.scss';
-@import './components/common/Modal/Modal.module.scss';
-@import './components/common/Pagination/Pagination.module.scss';
-@import './components/common/ProtectedRoute/ProtectedRoute.module.scss';
+.scroll-y { overflow-y: auto; }
