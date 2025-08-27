@@ -1,6 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/common/Header/Header';
-import Navbar from '../../components/common/Navbar/Navbar';
+// import Navbar from '../../components/common/Navbar/Navbar';
 import Footer from '../../components/common/Footer/Footer';
 import CategoryList from '../../components/createBooking/CategoryList/CategoryList';
 import ItemList from '../../components/createBooking/ItemList/ItemList';
@@ -103,7 +104,6 @@ export default function CreateBooking({ setUser }) {
     });
     
     // Show success message
-    alert(`${item.name} added to cart!`);
   };
 
   const getCartItemCount = () =>
@@ -134,9 +134,7 @@ export default function CreateBooking({ setUser }) {
       setCart([]);
       localStorage.removeItem('eventCart');
       setShowCart(false);
-      
-      alert('Booking created successfully! Starting new event.');
-      
+            
       return result;
     } catch (error) {
       console.error('Checkout error:', error);
@@ -159,19 +157,13 @@ export default function CreateBooking({ setUser }) {
   return (
     <>
       {/* Common Layout */}
-      <Header />
+      <Header setUser={setUser}/>
 
       {/* Page Content */}
       <main className={styles.CreateBooking}>
         {/* Page Title */}
         <div className={styles.sectionHeading}>
           <span>CREATE BOOKING</span>
-          <button 
-            className={styles.cartToggle}
-            onClick={toggleCart}
-          >
-            Cart ({getCartItemCount()} items) - ${getCartTotal().toFixed(2)}
-          </button>
         </div>
 
         <div className={styles.content}>
