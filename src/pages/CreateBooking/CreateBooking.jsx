@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/common/Header/Header';
-import Navbar from '../../components/common/Navbar/Navbar';
+// import Navbar from '../../components/common/Navbar/Navbar';
 import Footer from '../../components/common/Footer/Footer';
 import CategoryList from '../../components/createBooking/CategoryList/CategoryList';
 import ItemList from '../../components/createBooking/ItemList/ItemList';
@@ -159,7 +159,7 @@ export default function CreateBooking({ setUser }) {
   return (
     <>
       {/* Common Layout */}
-      <Header />
+      <Header setUser={setUser}/>
 
       {/* Page Content */}
       <main className={styles.CreateBooking}>

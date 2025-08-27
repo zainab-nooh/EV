@@ -1,60 +1,60 @@
-$bg-main: #F7F9F9;
-$bg-alt: #D9E3E2;
-$text-main: #353B32;
-$accent: #7B9E89;
+// $bg-main: #F7F9F9;
+// $bg-alt: #D9E3E2;
+// $text-main: #353B32;
+// $accent: #7B9E89;
 
-.navbar {
-  display: flex;
-  align-items: center;
+// .navbar {
+//   display: flex;
+//   align-items: center;
   
-  .navbarContainer {
-    display: flex;
-    align-items: center;
-  }
+//   .navbarContainer {
+//     display: flex;
+//     align-items: center;
+//   }
 
-  .navbarMenu {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-  }
+//   .navbarMenu {
+//     display: flex;
+//     gap: 2rem;
+//     list-style: none;
+//     margin: 0;
+//     padding: 0;
+//     align-items: center;
+//   }
 
-  .navbarLink {
-    text-decoration: none;
-    color: $text-main;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 0.5rem 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    transition: color 0.3s ease;
-    font-family: inherit; // Ensure button uses same font as links
+//   .navbarLink {
+//     text-decoration: none;
+//     color: $text-main;
+//     font-weight: 500;
+//     font-size: 1rem;
+//     padding: 0.5rem 0;
+//     border: none;
+//     background: transparent;
+//     cursor: pointer;
+//     transition: color 0.3s ease;
+//     font-family: inherit; // Ensure button uses same font as links
 
-    &:hover {
-      color: $accent;
-    }
+//     &:hover {
+//       color: $accent;
+//     }
 
-    // Make button look exactly like other links
-    &:focus {
-      outline: none;
-    }
-  }
+//     // Make button look exactly like other links
+//     &:focus {
+//       outline: none;
+//     }
+//   }
 
-  .navbarProfile {
-    display: flex;
-    align-items: center;
-    margin-left: 1rem;
+//   .navbarProfile {
+//     display: flex;
+//     align-items: center;
+//     margin-left: 1rem;
 
-    .navbarProfileImage {
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-      border: 2px solid $accent;
-      object-fit: cover;
-      cursor: pointer;
-    }
-  }
-}
+//     .navbarProfileImage {
+//       height: 40px;
+//       width: 40px;
+//       border-radius: 50%;
+//       border: 2px solid $accent;
+//       object-fit: cover;
+//       cursor: pointer;
+//     }
+//   }
+// }
