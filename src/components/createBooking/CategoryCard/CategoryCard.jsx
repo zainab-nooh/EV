@@ -20,7 +20,7 @@ export default function CategoryCard({ item: category, isSelected, onSelect }) {
           />
         ) : (
           <div className={styles.imagePlaceholder}>
-            <span className={styles.placeholderText}>:file_folder:</span>
+            <span className={styles.placeholderText}></span>
           </div>
         )}
       </div>

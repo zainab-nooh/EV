@@ -45,51 +45,66 @@ const seedData = async () => {
     const items = await Item.create([
       // Venue
       {
-        name: 'Professional Sound System',
-        picture: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400',
-        details: 'High-quality sound system with speakers, amplifiers, and mixing console. Perfect for events up to 500 people.',
+        name: 'FourSeason Ballroom',
+        picture: '/venue/4season.jpg',
+        details: 'Illuminated by natural light, with the Bay and the Manama skyline offering a dramatic backdrop, our Al Bahrain Ballroom is an elegant setting for unforgettable events. Fully flexible, the room can be configured into three smaller sections and connects to an outdoor terrace and a lush lawn.',
         category: venueCategory._id,
         price: 250
       },
       {
-        name: 'Wireless Microphone Set',
-        picture: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400',
-        details: 'Set of 4 wireless microphones with charging station and receiver.',
+        name: 'BIBF AUDITORIUM',
+        picture: '/venue/bibf.jpg',
+        details: ' The Auditorium is a state-of-the-art space located on the ground and first floor of the BIBF’s building. Many events and masterclasses have been held in The Auditorium, with a capacity of more than 284 seats, a digital podium, and impeccable acoustics, the Auditorium provides a sanctuary of modern architectural space, perfectly designed to accommodate modern needs',
         category: venueCategory._id,
         price: 75
       },
       {
-        name: 'LED Projector & Screen',
-        picture: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400',
-        details: '4K LED projector with 120-inch portable screen for presentations and entertainment.',
+        name: 'The Heaven',
+        picture: '/venue/heaven.png',
+        details: 'Haremlik Hall, Wonderful empire party, grand reception in the ballroom - whatever the wedding, we\'ve got the perfect photo setting right here at The Heaven Palace.',
         category: venueCategory._id,
         price: 180
       },
       {
-        name: 'DJ Booth Setup',
-        picture: 'https://images.unsplash.com/photo-1571266028243-d220c6c8e4a3?w=400',
-        details: 'Complete DJ setup with turntables, mixer, and booth table.',
+        name: 'Johrara Balroom',
+        picture: '/venue/joharah-balroom-wedding_Jumeirah.png',
+        details: 'Tastefully appointed with classic Arabian decor, this charming ballroom enjoys an adjacent pre-function area and is ideal for intimate gatherings and training seminars',
         category: venueCategory._id,
         price: 200
       },
+      {
+        name: 'Majlis Al Salam',
+        picture: '/venue/majlis_alsalam_Jumeirah.png',
+        details: 'This elegant ballroom is decorated in an arabesque style and perfect for large groups. Adjoining pre-function areas and an outdoor terrace allow for genuinely dynamic events.',
+        category: venueCategory._id,
+        price: 200
+      },
+      {
+        name: 'Onyx Ballroom',
+        picture: '/venue/onex.jpg',
+        details: 'Onyx Ballroom offers a sophisticated and modern venue, perfect for weddings, corporate events, and special celebrations. With its spacious design, elegant décor, and versatile setup, it provides the ideal setting to create unforgettable memories.',
+        category: venueCategory._id,
+        price: 200
+      },
+
       // Stage and Decorations
       {
         name: 'LED String Lights (100ft)',
-        picture: 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400',
+        picture: '',
         details: 'Warm white LED string lights, perfect for outdoor events and ambiance.',
         category: decorationsCategory._id,
         price: 45
       },
       {
         name: 'Uplighting Package',
-        picture: 'https://images.unsplash.com/photo-1516997121675-4c2d1684aa3e?w=400',
+        picture: '/venue/ritz.jpg',
         details: 'Set of 8 LED uplights with color changing capabilities and wireless control.',
         category: decorationsCategory._id,
         price: 120
       },
       {
         name: 'Spotlight Set',
-        picture: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400',
+        picture: 'venue/sofitel.jpg',
         details: 'Professional stage spotlights for highlighting performers or speakers.',
         category: decorationsCategory._id,
         price: 90
@@ -158,88 +173,328 @@ const seedData = async () => {
         category: cakeCategory._id,
         price: 8
       },
-  
+
       // Flower & Gifts
       {
-        name: 'Chafing Dishes (Set of 4)',
-        picture: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400',
-        details: 'Stainless steel chafing dishes with fuel and serving utensils.',
+        name: 'Pure White Serenity Flowers Vase',
+        picture: '/flower/flower-1.jpg',
+        details: 'Bring timeless elegance to any space with a serene arrangement of White Gerbera, White Limonium, White Delphinium, and Light Blue Delphinium, beautifully displayed in a sleek cylinder glass vase.',
         category: flowerCategory._id,
-        price: 60
+        price: 20
       },
       {
-        name: 'Commercial Coffee Machine',
-        picture: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=400',
-        details: 'Industrial coffee machine that can serve 200+ cups per hour.',
+        name: 'Boho Flowers Bouquet',
+        picture: '/flower/flower-2.jpg',
+        details: 'Honor the spirit of spirit of celebration with a bouquet that captures serenity and celebration in every bloom. This elegant arrangement features pristine white roses paired with ethereal purple delphinium stems and soft light blue delphiniums, evoking a calming, graceful presence.',
         category: flowerCategory._id,
-        price: 80
+        price: 23
       },
       {
-        name: 'Beverage Station',
-        picture: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400',
-        details: 'Complete beverage station with dispensers, ice buckets, and cups.',
+        name: 'Cake Boutique 21 Happy Birthday |  The Happiness Roses Bouquet',
+        picture: '/flower/flower-3.jpg',
+        details: 'Love takes shape in the sweetest way with this enchanting duo.',
+        category: flowerCategory._id,
+        price: 21
+      },
+      {
+        name: 'AH by Azhar Hubail Glam Touch Set',
+        picture: '/flower/flower-4.jpg',
+        details: 'Celebrate beauty and elegance with the Azhar Hubail Glam Set for Women, featuring the captivating Lavish Perfume 100 ml (Unisex) and the luxurious Mat Lip Lacquer.',
         category: flowerCategory._id,
         price: 55
       },
+      {
+        name: 'Fragrance of The Day Flowers Vase',
+        picture: '/flower/flower-5.jpg',
+        details: 'A vibrant harmony of color and calm, this floral arrangement brings sunshine indoors with poise. Bright yellow sunflowers stand tall with energy, while yellow roses soften the scene with a golden warmth. ',
+        category: flowerCategory._id,
+        price: 100
+      },
+      {
+        name: 'Apple iPhone 16 Plus 128 GB Pink | Red Roses Bouquet',
+        picture: '/flower/flower-6.jpg',
+        details: 'Surprise someone special with the Apple iPhone 16 Plus 128 GB in Pink paired with a Red Roses Bouquet—the best gift for your special and loved people. This luxury gift expresses appreciation and love, combining cutting-edge technology with timeless floral elegance. ',
+        category: flowerCategory._id,
+        price: 505
+      },
+      {
+        name: 'Red Love You Roses Box',
+        picture: '/flower/flower-7.jpg',
+        details: 'Speak the language of love with a romantic floral gesture that captures the heart. This elegant cylindrical cream box is filled with rich red roses, each bloom whispering affection and devotion. At the top, two graceful white orchids are artistically arranged in the shape of a ribbon, symbolizing connection and lasting love.',
+        category: flowerCategory._id,
+        price: 28
+      },
+      {
+        name: 'Zia Emerald Pendant Necklace | Birthday Flowers',
+        picture: '/flower/flower-8.jpg',
+        details: 'Celebrate her special day with this elegant necklace from Zia, crafted from rhodium plated sterling silver and featuring a stunning rectangular emerald green cubic zirconia stone pendant. This luxurious necklace is the perfect gift for an elegant lady, combining sophistication and charm.',
+        category: flowerCategory._id,
+        price: 35
+      },
+      {
+        name: 'Magical Flowers Bouquet',
+        picture: '/flower/flower-9.jpg',
+        details: 'Celebrate with a bouquet that radiates joy and festivity. This stunning arrangement blends the cheerful charm of pink gerbera, the soft elegance of purple and orange roses, and the vibrant pop of fuchsia baby roses. Accented with delicate white gypsophila and soothing green eucalyptus, each bloom is carefully arranged to create a sense of heartfelt celebration.',
+        category: flowerCategory._id,
+        price: 22
+      },
       // Catering
       {
-        name: 'Balloon Arch Kit',
-        picture: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400',
-        details: 'Complete balloon arch kit with frame, balloons, and assembly instructions.',
+        name: 'Classic Buffet',
+        picture: '/Catering/Beyond-catering-Classic-Buffet.jpg',
+        details: 'By Beyond Catering Boutique',
         category: cateringCategory._id,
-        price: 40
+        price: 7.8
       },
       {
-        name: 'Floral Centerpieces',
-        picture: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=400',
-        details: 'Fresh floral centerpieces in elegant vases. Minimum order of 5.',
+        name: 'Standard Buffet',
+        picture: '/Catering/Beyond-catering-Standard.jpg',
+        details: 'By Beyond Catering Boutique',
         category: cateringCategory._id,
-        price: 30
+        price: 10.5
       },
       {
-        name: 'Fabric Draping',
-        picture: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400',
-        details: 'Elegant fabric draping for walls, ceilings, and backdrops.',
+        name: 'Traditional BreakFast',
+        picture: '/Catering/Beyond-catering-TradBreakfast.jpg',
+        details: 'By Beyond Catering Boutique',
         category: cateringCategory._id,
-        price: 65
+        price: 6.6
       },
+      {
+        name: 'VIP Package',
+        picture: '/Catering/Beyond-catering-VIP.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 6.6
+      },
+      {
+        name: 'Bolognese Musaka',
+        picture: '/Catering/Bolognese Musaka.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 4
+      },
+      {
+        name: 'Brioche Slice Sandwich',
+        picture: '/Catering/Brioche Slice Sandwich.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 5
+      },
+      {
+        name: 'Chia & Mango Dessert',
+        picture: '/Catering/Chia & Mango Dessert.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 7.4
+      },
+      {
+        name: 'Chicken Biryani',
+        picture: '/Catering/Chicken Biryani.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 3.3
+      },
+      {
+        name: 'Chocolate Pudding',
+        picture: '/Catering/Chocolate Pudding.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 8.5
+      },
+      {
+        name: 'Danish & Croissant',
+        picture: '/Catering/Danish & Croissant.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 3.5
+      },
+      {
+        name: 'Halloumi & Date Salad',
+        picture: '/Catering/Halloumi & Date Salad.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 3.5
+      },
+      {
+        name: 'Khash Khash Dessert',
+        picture: '/Catering/Khash Khash Dessert.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 3.5
+      },
+      {
+        name: 'Layali Box',
+        picture: '/Catering/Layali Box.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 3.5
+      },
+      {
+        name: 'Mango Salad',
+        picture: '/Catering/Mango Salad.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 4
+      },
+      {
+        name: 'Mango Trifle',
+        picture: '/Catering/Mango Trifle.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 3.8
+      },
+      {
+        name: 'Mini Brioche',
+        picture: '/Catering/Mini Brioche.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 6.6
+      },
+      {
+        name: 'Mini Croissant',
+        picture: '/Catering/Mini Croissant.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 3.8
+      },
+      {
+        name: 'Parisian Salad',
+        picture: '/Catering/Parisian Salad.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 4
+      },
+      {
+        name: 'Pasta Bechamel with Meat',
+        picture: '/Catering/Pasta Bechamel with Meat.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 4.4
+      },
+      {
+        name: 'Pasta Chicken & Spinach',
+        picture: '/Catering/Pasta Chicken & Spinach.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 4.2
+      },
+      {
+        name: 'Rice Mdalal',
+        picture: '/Catering/Rice Mdalal.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 4.2
+      },
+      {
+        name: 'Saffron Milk Cake',
+        picture: '/Catering/Saffron Milk Cake.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 4.2
+      },
+      {
+        name: 'Sandwiches Box',
+        picture: '/Catering/Sandwiches Box.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 5
+      },
+      {
+        name: 'Strawberry Salad',
+        picture: '/Catering/Strawberry Salad.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 3.5
+      },
+      {
+        name: 'Um Ali',
+        picture: '/Catering/Um Ali.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 2.8
+      },
+      {
+        name: 'VillaMam Catering',
+        picture: '/Catering/VillaMama.jpg',
+        details: 'By Beyond Catering Boutique',
+        category: cateringCategory._id,
+        price: 3.5
+      },
+      
       // Photography
       {
-        name: 'Photo Booth Props Kit',
-        picture: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400',
-        details: 'Fun photo booth props including signs, hats, glasses, and mustaches.',
+        name: 'Birthday Package 1',
+        picture: '/Photography/photo1.jpeg',
+        details: 'By Exposure Studio - Package details - 55 BHD 	20 printed pictures (5 x 7) inch. All Birthday pictures will be given to the client to chose  the preferred pictures (on USB-low resolution). Chosen pictures will be professionally edited and save on USB. Studio Lighting set up. One Photographer. One Hour',
         category: photographyCategory._id,
-        price: 25
+        price: 55
       },
       {
-        name: 'Live Band Stage',
-        picture: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400',
-        details: 'Portable stage platform with risers, perfect for live performances.',
+        name: 'Birthday Package 2',
+        picture: '/Photography/photo2.jpeg',
+        details: 'By Exposure Studio - Package details - 55 BHD 	25 printed pictures (5 x 7) inch. All Birthday pictures will be given to the client to chose  the preferred pictures (on USB-low resolution). Chosen pictures will be professionally edited and save on USB. Studio Lighting set up. One Photographer. One Hour',
         category: photographyCategory._id,
         price: 200
       },
       {
-        name: 'Casino Table Games',
-        picture: 'https://images.unsplash.com/photo-1522069213448-443a614da9b6?w=400',
-        details: 'Professional casino tables including blackjack, poker, and roulette.',
+        name: 'Birthday Package 3',
+        picture: '/Photography/photo3.jpeg',
+        details: 'By Exposure Studio - Birthday Album (10×10) inch (25×25)cm. 40 to 45 pictures. All Birthday pictures will be given to the client to chose  the preferred pictures (on USB-low resolution). Chosen pictures will be professionally edited and save on USB. Studio Lighting set up. One Photographer. Two Hour',
         category: photographyCategory._id,
         price: 180
       },
+      {
+        name: 'Outdoor Coverage',
+        picture: '/Photography/outdoor-coverage.jpeg',
+        details: 'By Amani Studio - Birthday parties, family gatherings, reception, bridal shower, baby shower , Events & any ceremony',
+        category: photographyCategory._id,
+        price: 66
+      },
       // Staffing Services
       {
-        name: 'Professional Photo Backdrop',
-        picture: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=400',
-        details: 'Adjustable backdrop stand with various backdrop options.',
+        name: 'Anwar Albaharin Services',
+        picture: '/service/Anwar-bahrain.jpg',
+        details: 'Trusted staffing solutions providing skilled professionals for events, hospitality, and corporate needs.',
         category: staffingCategory._id,
-        price: 50
+        price: 20
       },
       {
-        name: 'Studio Lighting Kit',
-        picture: 'https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?w=400',
-        details: 'Professional photography lighting kit with softboxes and stands.',
+        name: 'Arabian Services',
+        picture: '/service/arabian-service.jpg',
+        details: 'Comprehensive manpower and event support services with a focus on quality and reliability.',
         category: staffingCategory._id,
-        price: 120
+        price: 17
       },
+      {
+        name: 'Fraser Services',
+        picture: '/service/fraser-Hospitality.jpeg',
+        details: 'Specialized in hospitality staffing, offering trained personnel for hotels, banquets, and large-scale functions.',
+        category: staffingCategory._id,
+        price: 30
+      },
+      {
+        name: 'Qnad',
+        picture: '/service/Qnad.jpg',
+        details: 'Flexible staffing service designed to meet both short-term and long-term workforce requirements.',
+        category: staffingCategory._id,
+        price: 16
+      },
+      {
+        name: 'Siqrat Cleaning Services',
+        picture: '/service/siqrat.png',
+        details: 'Professional cleaning teams providing reliable and detail-oriented services for events and venues.',
+        category: staffingCategory._id,
+        price: 22
+      },
+      {
+        name: 'Super Catering Services',
+        picture: '/service/super.jpg',
+        details: 'Full-service catering staff delivering exceptional food service and hospitality for every occasion.',
+        category: staffingCategory._id,
+        price: 30
+      },
+
       // Game & Activities
       {
         name: 'Luxury Event Bus',
