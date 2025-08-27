@@ -5,7 +5,6 @@ import Navbar from '../../components/common/Navbar/Navbar';
 import Footer from '../../components/common/Footer/Footer';
 import BookingDetail from '../../components/bookingHistory/BookingDetail/BookingDetail';
 import styles from './BookingHistory.module.scss';
-
 const BookingHistory = ({ setUser }) => {
   const [bookings, setBookings] = useState([]);
   const [selectedBooking, setSelectedBooking] = useState(null);
@@ -14,11 +13,9 @@ const BookingHistory = ({ setUser }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const bookingId = searchParams.get('bookingId');
-
   useEffect(() => {
     fetchBookingHistory();
   }, []);
-
   useEffect(() => {
     if (bookingId && bookings.length > 0) {
       const booking = bookings.find(b => b._id === bookingId);
@@ -29,25 +26,21 @@ const BookingHistory = ({ setUser }) => {
       setSelectedBooking(bookings[0]);
     }
   }, [bookingId, bookings]);
-
   const fetchBookingHistory = async () => {
     try {
       setLoading(true);
       const token = localStorage.getItem('token');
-      
       if (!token) {
         setError('Please log in to view your booking history');
         setLoading(false);
         return;
       }
-
       const response = await fetch('/api/bookings/history', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json'
         }
       });
-
       if (!response.ok) {
         if (response.status === 401) {
           setError('Session expired. Please log in again.');
@@ -57,10 +50,8 @@ const BookingHistory = ({ setUser }) => {
         }
         throw new Error(`Failed to fetch bookings: ${response.status}`);
       }
-
       const data = await response.json();
       setBookings(data || []);
-      
       if (data.length > 0 && !selectedBooking) {
         setSelectedBooking(data[0]);
       }
@@ -71,7 +62,6 @@ const BookingHistory = ({ setUser }) => {
       setLoading(false);
     }
   };
-
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -81,7 +71,6 @@ const BookingHistory = ({ setUser }) => {
       minute: '2-digit'
     });
   };
-
   const getStatusClass = (status) => {
     switch (status) {
       case 'completed': return styles.statusCompleted;
@@ -91,24 +80,19 @@ const BookingHistory = ({ setUser }) => {
       default: return styles.statusDefault;
     }
   };
-
   const handleBookingSelect = (booking) => {
     setSelectedBooking(booking);
     navigate(`/booking-history?bookingId=${booking._id}`);
   };
-
   const handleCreateNewBooking = () => {
     navigate('/create-booking');
   };
-
   const handleReorder = (booking) => {
     // Add all items from the booking back to cart
     const existingCart = localStorage.getItem('eventCart');
     let cart = existingCart ? JSON.parse(existingCart) : [];
-    
     booking.items.forEach(bookingItem => {
       const existingCartItem = cart.find(ci => ci._id === bookingItem.item._id);
-      
       if (existingCartItem) {
         existingCartItem.quantity += bookingItem.quantity;
       } else {
@@ -123,11 +107,9 @@ const BookingHistory = ({ setUser }) => {
         });
       }
     });
-    
     localStorage.setItem('eventCart', JSON.stringify(cart));
     navigate('/create-booking');
   };
-
   if (loading) {
     return (
       <>
@@ -140,7 +122,6 @@ const BookingHistory = ({ setUser }) => {
       </>
     );
   }
-
   if (error) {
     return (
       <>
@@ -151,13 +132,13 @@ const BookingHistory = ({ setUser }) => {
             <h2>Unable to Load History</h2>
             <p>{error}</p>
             <div className={styles.errorActions}>
-              <button 
+              <button
                 className={styles.retryBtn}
                 onClick={fetchBookingHistory}
               >
                 Try Again
               </button>
-              <button 
+              <button
                 className={styles.createBookingBtn}
                 onClick={handleCreateNewBooking}
               >
@@ -170,15 +151,12 @@ const BookingHistory = ({ setUser }) => {
       </>
     );
   }
-
   return (
     <>
       <Header />
       <Navbar setUser={setUser} />
-      
       <div className={styles.container}>
         <h1 className={styles.title}>Booking History</h1>
-        
         <div className={styles.content}>
           {/* Left Sidebar - Booking List */}
           <div className={styles.sidebar}>
@@ -194,7 +172,7 @@ const BookingHistory = ({ setUser }) => {
                 </div>
                 <p>No events found</p>
                 <p className={styles.emptySubtext}>Start creating your first event booking</p>
-                <button 
+                <button
                   className={styles.createBookingBtn}
                   onClick={handleCreateNewBooking}
                 >
@@ -237,11 +215,10 @@ const BookingHistory = ({ setUser }) => {
               </div>
             )}
           </div>
-
           {/* Right Content - Booking Details */}
           <div className={styles.details}>
             {selectedBooking ? (
-              <BookingDetail 
+              <BookingDetail
                 booking={selectedBooking}
                 onReorder={handleReorder}
                 formatDate={formatDate}
@@ -256,10 +233,8 @@ const BookingHistory = ({ setUser }) => {
           </div>
         </div>
       </div>
-      
       <Footer />
     </>
   );
 };
-
 export default BookingHistory;

@@ -1,15 +1,13 @@
 import React from 'react';
 import styles from './CategoryCard.module.scss';
-
 export default function CategoryCard({ item: category, isSelected, onSelect }) {
   const handleClick = () => {
     if (onSelect) {
       onSelect(category);
     }
   };
-
   return (
-    <div 
+    <div
       className={`${styles.categoryCard} ${isSelected ? styles.selected : ''}`}
       onClick={handleClick}
     >
@@ -22,18 +20,16 @@ export default function CategoryCard({ item: category, isSelected, onSelect }) {
           />
         ) : (
           <div className={styles.imagePlaceholder}>
-            <span className={styles.placeholderText}>📁</span>
+            <span className={styles.placeholderText}>:file_folder:</span>
           </div>
         )}
       </div>
-
       <div className={styles.categoryInfo}>
         <h3 className={styles.categoryName}>{category.name}</h3>
         {category.description && (
           <p className={styles.categoryDescription}>{category.description}</p>
         )}
       </div>
-      
       {isSelected && (
         <div className={styles.selectedIndicator}>
           ✓

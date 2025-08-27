@@ -32,7 +32,6 @@ useEffect(() => {
     return (
       <>
       <Header />
-      <Navbar />
       <div className={styles.profileContainer}>
         <img 
           src={user.picture || '/default-profile.png'} 
