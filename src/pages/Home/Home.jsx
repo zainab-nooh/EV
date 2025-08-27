@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Header from '../../components/common/Header/Header'
-
 import Footer from "../../components/common/Footer/Footer";
 import Searchbar from "../../components/common/Searchbar/Searchbar"
 import styles from "../../pages/Home/Home.module.scss";
@@ -35,9 +34,7 @@ export default function Homepage({setUser}) {
       setCategories(data.categories || []);
     } catch (err) {
       setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   // Fetch random items (with pagination)
@@ -52,13 +49,11 @@ export default function Homepage({setUser}) {
       setItems(data.items || []);
     } catch (err) {
       setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    } 
   };
 
   const handleCategoryClick = (categoryId) => {
-    navigate(`/categories/${categoryId}`);
+    navigate(`/bookings/new?category=${categoryId}`);
   };
 
   const handleNextItems = () => {
@@ -74,7 +69,6 @@ export default function Homepage({setUser}) {
         {/* Categories Section */}
         <h1>Available Categories</h1>
         {loadingCategories ? (
-
           <div className={styles.categoriesGrid}>
             {categories.map(category => (
               <div
@@ -111,21 +105,7 @@ export default function Homepage({setUser}) {
               </div>
             ))}
           </div>
-          // <p>Loading items...</p>
         ) : (
-          // <div className={styles.itemsGrid}>
-          //   {items.map(item => (
-          //     <div key={item._id} className={styles.itemCard}>
-          //       <img
-          //         src={item.image || '/default-item.png'}
-          //         alt={item.name}
-          //         className={styles.itemImage}
-          //       />
-          //       <h4>{item.name}</h4>
-          //       <p>{item.description}</p>
-          //     </div>
-          //   ))}
-          // </div>
           <p>Loading items...</p>
         )}
 
