@@ -1,20 +1,25 @@
-@use "sass:color";
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F7F9F9; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #353B32;
+}
 
-$bg-main: #F7F9F9;
-$bg-alt: #D9E3E2;
-$text-main: #353B32;
-$accent: #7B9E89;
-$error-color: #e74c3c;
-$border-radius: 8px;
-$transition: 0.3s ease;
+.SignupForm {
+  max-width: 420px;
+  width: 100%;
+  margin: 2rem;
+  padding: 2rem 2.5rem;
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 
-.form-container {
-  max-width: 400px;
-  margin: 5rem auto;
-  background: $bg-main;
-  padding: 2rem;
-  border-radius: $border-radius;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 
   form {
     display: flex;
@@ -22,56 +27,53 @@ $transition: 0.3s ease;
     gap: 1rem;
 
     label {
+      font-size: 0.9rem;
       font-weight: 600;
-      color: $text-main;
-      font-size: 0.95rem;
+      color: #353B32;
     }
 
     input {
-      padding: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
       font-size: 1rem;
-      border: 1px solid color.adjust($text-main, $lightness: 50%);
-      border-radius: $border-radius;
-      outline: none;
-      transition: $transition;
+      color: #353B32;
+      transition: border-color 0.2s ease;
 
       &:focus {
-        border-color: $accent;
-        box-shadow: 0 0 6px color.adjust($accent, $alpha: -0.7);
+        border-color: #353B32;
+        outline: none;
       }
     }
 
     button {
-      margin-top: 0.5rem;
+      margin-top: 1rem;
       padding: 0.75rem;
-      font-weight: bold;
+      background: #353B32;
+      color: #fff;
+      font-weight: 600;
       font-size: 1rem;
       border: none;
-      border-radius: $border-radius;
-      background: $accent;
-      color: white;
+      border-radius: 0.5rem;
       cursor: pointer;
-      transition: $transition;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background: darken(#353B32, 8%);
+      }
 
       &:disabled {
-        background: color.adjust($accent, $lightness: 20%);
+        background: #ccc;
         cursor: not-allowed;
-      }
-
-      &:hover:enabled {
-        background: color.adjust($accent, $lightness: -10%);
-      }
-
-      &:active:enabled {
-        transform: scale(0.98);
       }
     }
   }
 }
 
 .error-message {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: $error-color;
   text-align: center;
+  margin-top: 1rem;
+  color: #d9534f;
+  font-size: 0.9rem;
+  font-weight: 500;
 }

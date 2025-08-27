@@ -55,7 +55,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    backdrop-filter: blur(1px);
+      backdrop-filter: blur(1px);
     opacity: 0.5;
     pointer-events: none;
   }
