@@ -1,6 +1,6 @@
 import React from "react";
 import CategoryCard from "../CategoryCard/CategoryCard";
-import styles from "./CategoryList.scss";
+import styles from "./CategoryList.module.scss";
 // import Category from "../../../../models/Category";
 
 const CategoryList = ({ categories}) => {

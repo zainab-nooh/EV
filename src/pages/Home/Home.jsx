@@ -8,7 +8,7 @@ import { getAll as getAllCategories  } from "../../utils/categories-api";
 import { getAll as getAllItems } from "../../utils/items-api"
 import { useNavigate } from "react-router-dom";
 
-export default function Homepage() {
+export default function Homepage({setUser}) {
   const [categories, setCategories] = useState([]);
   const [items, setItems] = useState([]);
   const [page, setPage] = useState(1);
@@ -60,7 +60,7 @@ export default function Homepage() {
   return (
     <>
     <Header />
-      <Navbar />
+      <Navbar setUser={setUser} />
       <Searchbar />
       <main className={styles.mainContent}>
         {/* Categories Section */}

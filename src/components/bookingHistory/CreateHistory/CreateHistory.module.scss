@@ -1,4 +1,3 @@
-
 :root {
   --bg-main: #F7F9F9;
   --bg-alt: #D9E3E2;
@@ -7,6 +6,7 @@
   --btn-hover: #2980B9;
   --error-color: #E74C3C;
 }
+
 .createHistory {
   display: flex;
   justify-content: center;
@@ -17,6 +17,7 @@
   font-family: Arial, sans-serif;
   color: var(--font-main);
 }
+
 .createHistoryContainer {
   width: 100%;
   max-width: 700px;
@@ -26,19 +27,23 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: background 0.3s ease;
 }
+
 .createHistoryHeader {
   text-align: center;
   margin-bottom: 20px;
+
   h2 {
     margin: 0;
     font-size: 1.8rem;
   }
+
   p {
     margin-top: 5px;
     font-size: 0.95rem;
-    color: darken(var(--font-main), 20%);
+    color: color-mix(in srgb, var(--font-main) 80%, black); // darken 20%
   }
 }
+
 .errorMessage {
   background-color: var(--error-color);
   color: white;
@@ -47,40 +52,48 @@
   margin-bottom: 15px;
   text-align: center;
 }
+
 .createHistoryForm {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 .formGroup {
   display: flex;
   flex-direction: column;
   gap: 5px;
+
   label {
     font-weight: bold;
   }
+
   .formControl {
     padding: 8px 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 1rem;
     transition: border 0.3s ease, background 0.3s ease;
+
     &:focus {
       outline: none;
       border-color: var(--accent);
-      background-color: lighten(var(--bg-alt), 5%);
+      background-color: color-mix(in srgb, var(--bg-alt) 95%, white); // lighten 5%
     }
   }
 }
+
 .itemsSection {
   h3 {
     margin-bottom: 5px;
   }
+
   .itemsNote {
     font-size: 0.85rem;
-    color: darken(var(--font-main), 20%);
+    color: color-mix(in srgb, var(--font-main) 80%, black); // darken 20%
     margin-bottom: 10px;
   }
+
   .itemsPlaceholder {
     background-color: var(--bg-main);
     border: 1px dashed #ccc;
@@ -89,25 +102,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     .placeholderContent {
       text-align: center;
+
       svg {
         margin-bottom: 10px;
       }
+
       p {
         font-weight: bold;
         margin: 0;
       }
+
       small {
-        color: darken(var(--font-main), 30%);
+        color: color-mix(in srgb, var(--font-main) 70%, black); // darken 30%
       }
     }
   }
 }
+
 .formActions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+
   .btn {
     padding: 8px 18px;
     border: none;
@@ -115,23 +134,29 @@
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s ease, color 0.3s ease;
+
     &:disabled {
       opacity: 0.6;
       cursor: not-allowed;
     }
   }
+
   .btnPrimary {
     background-color: var(--accent);
     color: white;
+
     &:hover:not(:disabled) {
       background-color: var(--btn-hover);
     }
   }
+
   .btnSecondary {
     background-color: #ccc;
     color: var(--font-main);
+
     &:hover:not(:disabled) {
-      background-color: darken(#ccc, 10%);
+      background-color: color-mix(in srgb, #ccc 90%, black); // darken(#ccc, 10%)
     }
   }
 }
+  
