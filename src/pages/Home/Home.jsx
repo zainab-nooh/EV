@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Header from '../../components/common/Header/Header'
-
 import Footer from "../../components/common/Footer/Footer";
 import Searchbar from "../../components/common/Searchbar/Searchbar"
 import styles from "../../pages/Home/Home.module.scss";
@@ -20,35 +19,41 @@ export default function Homepage({setUser}) {
 
   // Fetch categories
   useEffect(() => {
-    async function fetchCategories() {
-      try {
-        const cdata = await getAllCategories();
-        setCategories(cdata)
-      }
-      catch (error) {
-        setError(error.message)
-      }
-    }
-    fetchCategories()
-  }, []);
+      fetchCategories();
+      fetchItems();
+    }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('/api/categories', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!res.ok) throw new Error('Failed to fetch categories');
+      const data = await res.json();
+      setCategories(data.categories || []);
+    } catch (err) {
+      setError(err.message);
+    } 
+  };
 
   // Fetch random items (with pagination)
-  useEffect(() => {
-    async function fetchItems() {
-      setLoadingItems(true);
-      try {
-        const idata = await getAllItems()
-        setItems(idata)
-      }
-      catch (error) {
-        setError(error.message)
-      }
-    }
-    fetchItems();
-  }, [page]);
+  const fetchItems = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('/api/items', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!res.ok) throw new Error('Failed to fetch categories');
+      const data = await res.json();
+      setItems(data.items || []);
+    } catch (err) {
+      setError(err.message);
+    } 
+  };
 
   const handleCategoryClick = (categoryId) => {
-    navigate(`/categories/${categoryId}`);
+    navigate(`/bookings/new?category=${categoryId}`);
   };
 
   const handleNextItems = () => {
@@ -56,7 +61,6 @@ export default function Homepage({setUser}) {
   };
 
   if (error) return <p>Error: {error}</p>;
-
   return (
     <>
     <Header setUser={setUser} />
@@ -65,8 +69,6 @@ export default function Homepage({setUser}) {
         {/* Categories Section */}
         <h1>Available Categories</h1>
         {loadingCategories ? (
-          <p>Loading categories...</p>
-        ) : (
           <div className={styles.categoriesGrid}>
             {categories.map(category => (
               <div
@@ -83,13 +85,13 @@ export default function Homepage({setUser}) {
               </div>
             ))}
           </div>
+        ) : (
+          <p>Loading categories...</p>
         )}
 
         {/* Random Items Section */}
         <h2>Random Items</h2>
         {loadingItems ? (
-          <p>Loading items...</p>
-        ) : (
           <div className={styles.itemsGrid}>
             {items.map(item => (
               <div key={item._id} className={styles.itemCard}>
@@ -103,6 +105,8 @@ export default function Homepage({setUser}) {
               </div>
             ))}
           </div>
+        ) : (
+          <p>Loading items...</p>
         )}
 
         {/* Next Button */}

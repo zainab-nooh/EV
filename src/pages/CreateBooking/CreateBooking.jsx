@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../../components/common/Header/Header';
 // import Navbar from '../../components/common/Navbar/Navbar';
 import Footer from '../../components/common/Footer/Footer';
@@ -15,6 +16,7 @@ export default function CreateBooking({ setUser }) {
   const [showCart, setShowCart] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const location = useLocation();
 
   // Load cart from localStorage on component mount
   useEffect(() => {
@@ -59,7 +61,18 @@ export default function CreateBooking({ setUser }) {
       if (!res.ok) throw new Error('Failed to fetch categories');
       const data = await res.json();
       setCategories(data.categories || []);
-      if (data.categories?.length > 0) {
+
+
+      const params = new URLSearchParams(location.search);
+      const categoryId = params.get('category');
+      if (categoryId && data.categories?.length > 0) {
+        const found = data.categories.find(cat => cat._id === categoryId);
+        if (found) {
+          setSelectedCategory(found);
+        } else {
+          setSelectedCategory(data.categories[0]);
+        }
+      } else if (data.categories?.length > 0) {
         setSelectedCategory(data.categories[0]);
       }
     } catch (err) {

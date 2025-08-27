@@ -3,6 +3,7 @@ import Footer from "../../components/common/Footer/Footer";
 // import Navbar from "../../components/common/Navbar/Navbar";
 import styles from "./Profile.module.scss";
 import { getProfile } from '../../utils/users-api';
+import profimg from '../../../public/Profile.png'
 
 import { useState, useEffect } from "react";
 
@@ -33,7 +34,7 @@ export default function ProfilePage({ setUser }) {
       <Header setUser={setUser} />
       <div className={styles.profileContainer}>
         <img 
-          src={user.picture || '/default-profile.png'} 
+          src={user.picture || profimg } 
           alt={`${user.name}'s profile`} 
           className={styles.profilePicture} 
         />
