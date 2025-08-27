@@ -37,10 +37,16 @@
       border: 1px solid #ccc;
       border-radius: 0.5rem;
       font-size: 1rem;
+      border: 1px solid color.adjust($text-main, $lightness: 50%);
+      border-radius: $border-radius;
+      outline: none;
+      transition: $transition;
       color: #353B32;
       transition: border-color 0.2s ease;
 
       &:focus {
+        border-color: $accent;
+        box-shadow: 0 0 6px color.adjust($accent, $alpha: -0.7);
         border-color: #353B32;
         outline: none;
       }
@@ -59,6 +65,11 @@
       transition: background-color 0.3s ease;
 
       &:hover {
+        background: color.adjust($accent, $lightness: -10%);
+      }
+
+      &:active {
+        transform: scale(0.98);
         background: darken(#353B32, 8%);
       }
     }
