@@ -9,6 +9,10 @@ import cake8 from '../public/Cakes/cake8.png';
 import cake9 from '../public/Cakes/cake9.png';
 import cake10 from '../public/Cakes/cake10.png';
 import cake11 from '../public/Cakes/cake11.png';
+import cake13 from '../public/Cakes/cake13.png';
+import cake14 from '../public/Cakes/cake14.png';
+import cake15 from '../public/Cakes/cake15.png';
+import cake16 from '../public/Cakes/cake16.png';
 import cake12 from '../public/Cakes/cake12.png';
 
 
@@ -97,8 +101,36 @@ import cake12 from '../public/Cakes/cake12.png';
         price: 17
       },
                   {
-        name: 'Retro Skies',
+        name: 'Pinkberry',
         picture: cake12,
+        deatails: 'By Lola Cake',
+        category: cateringCategory._id,
+        price: 22
+      },
+                        {
+        name: 'Retro Skies',
+        picture: cake13,
+        deatails: 'By Lola Cake',
+        category: cateringCategory._id,
+        price: 16
+      },
+                        {
+        name: 'Purple star',
+        picture: cake14,
+        deatails: 'By Lola Cake',
+        category: cateringCategory._id,
+        price: 23
+      },
+                        {
+        name: 'Carrot Patch',
+        picture: cake15,
+        deatails: 'By Lola Cake',
+        category: cateringCategory._id,
+        price: 16
+      },
+                        {
+        name: 'Retro Hearts',
+        picture: cake16,
         deatails: 'By Lola Cake',
         category: cateringCategory._id,
         price: 16
