@@ -21,6 +21,7 @@ export default function Homepage({setUser}) {
   // Fetch categories
   useEffect(() => {
       fetchCategories();
+      fetchItems();
     }, []);
 
   const fetchCategories = async () => {
@@ -40,19 +41,21 @@ export default function Homepage({setUser}) {
   };
 
   // Fetch random items (with pagination)
-  useEffect(() => {
-    async function fetchItems() {
-      setLoadingItems(true);
-      try {
-        const idata = await getAllItems()
-        setItems(idata)
-      }
-      catch (error) {
-        setError(error.message)
-      }
+  const fetchItems = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await fetch('/api/items', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      if (!res.ok) throw new Error('Failed to fetch categories');
+      const data = await res.json();
+      setItems(data.items || []);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
-    fetchItems();
-  }, [page]);
+  };
 
   const handleCategoryClick = (categoryId) => {
     navigate(`/categories/${categoryId}`);
@@ -95,8 +98,6 @@ export default function Homepage({setUser}) {
         {/* Random Items Section */}
         <h2>Random Items</h2>
         {loadingItems ? (
-          <p>Loading items...</p>
-        ) : (
           <div className={styles.itemsGrid}>
             {items.map(item => (
               <div key={item._id} className={styles.itemCard}>
@@ -110,6 +111,22 @@ export default function Homepage({setUser}) {
               </div>
             ))}
           </div>
+          // <p>Loading items...</p>
+        ) : (
+          // <div className={styles.itemsGrid}>
+          //   {items.map(item => (
+          //     <div key={item._id} className={styles.itemCard}>
+          //       <img
+          //         src={item.image || '/default-item.png'}
+          //         alt={item.name}
+          //         className={styles.itemImage}
+          //       />
+          //       <h4>{item.name}</h4>
+          //       <p>{item.description}</p>
+          //     </div>
+          //   ))}
+          // </div>
+          <p>Loading items...</p>
         )}
 
         {/* Next Button */}
