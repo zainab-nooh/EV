@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import Header from '../../components/common/Header/Header';
+import Navbar from '../../components/common/Navbar/Navbar';
+import Footer from '../../components/common/Footer/Footer';
+import BookingDetail from '../../components/bookingHistory/BookingDetail/BookingDetail';
 import styles from './BookingHistory.module.scss';
-const BookingHistory = ({setUser}) => {
+const BookingHistory = ({ setUser }) => {
   const [bookings, setBookings] = useState([]);
   const [selectedBooking, setSelectedBooking] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -25,42 +29,34 @@ const BookingHistory = ({setUser}) => {
   const fetchBookingHistory = async () => {
     try {
       setLoading(true);
-      // TODO: Replace with actual API call when bookings-api.js is ready
-      // const userBookings = await bookingsAPI.getUserBookings();
-      
-      // Mock data for now - replace with actual API call
-      const mockBookings = [
-        {
-          _id: '1',
-          orderDate: '2024-01-15T10:30:00Z',
-          status: 'completed',
-          totalAmount: 1250.00,
-          items: [
-            { item: { name: 'Wedding Arch', _id: '1' }, quantity: 1, price: 500 },
-            { item: { name: 'Round Tables', _id: '2' }, quantity: 10, price: 75 }
-          ],
-          notes: 'Wedding ceremony setup'
-        },
-        {
-          _id: '2',
-          orderDate: '2024-01-10T14:20:00Z',
-          status: 'confirmed',
-          totalAmount: 850.00,
-          items: [
-            { item: { name: 'Sound System', _id: '3' }, quantity: 1, price: 300 },
-            { item: { name: 'Microphones', _id: '4' }, quantity: 2, price: 50 },
-            { item: { name: 'Lighting Kit', _id: '5' }, quantity: 1, price: 450 }
-          ],
-          notes: 'Corporate event equipment'
+      const token = localStorage.getItem('token');
+      if (!token) {
+        setError('Please log in to view your booking history');
+        setLoading(false);
+        return;
+      }
+      const response = await fetch('/api/bookings/history', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
         }
-      ];
-      
-      setBookings(mockBookings);
-      if (mockBookings.length > 0 && !selectedBooking) {
-        setSelectedBooking(mockBookings[0]);
+      });
+      if (!response.ok) {
+        if (response.status === 401) {
+          setError('Session expired. Please log in again.');
+          // Redirect to login
+          navigate('/auth');
+          return;
+        }
+        throw new Error(`Failed to fetch bookings: ${response.status}`);
+      }
+      const data = await response.json();
+      setBookings(data || []);
+      if (data.length > 0 && !selectedBooking) {
+        setSelectedBooking(data[0]);
       }
     } catch (err) {
-      setError('Failed to load booking history');
+      setError(err.message || 'Failed to load booking history');
       console.error('Error fetching bookings:', err);
     } finally {
       setLoading(false);
@@ -88,142 +84,157 @@ const BookingHistory = ({setUser}) => {
     setSelectedBooking(booking);
     navigate(`/booking-history?bookingId=${booking._id}`);
   };
+  const handleCreateNewBooking = () => {
+    navigate('/create-booking');
+  };
+  const handleReorder = (booking) => {
+    // Add all items from the booking back to cart
+    const existingCart = localStorage.getItem('eventCart');
+    let cart = existingCart ? JSON.parse(existingCart) : [];
+    booking.items.forEach(bookingItem => {
+      const existingCartItem = cart.find(ci => ci._id === bookingItem.item._id);
+      if (existingCartItem) {
+        existingCartItem.quantity += bookingItem.quantity;
+      } else {
+        cart.push({
+          _id: bookingItem.item._id,
+          name: bookingItem.item.name,
+          price: bookingItem.price,
+          quantity: bookingItem.quantity,
+          description: bookingItem.item.description,
+          details: bookingItem.item.details,
+          picture: bookingItem.item.picture
+        });
+      }
+    });
+    localStorage.setItem('eventCart', JSON.stringify(cart));
+    navigate('/create-booking');
+  };
   if (loading) {
     return (
-      <div className={styles.container}>
-        <div className={styles.loading}>Loading booking history...</div>
-      </div>
+      <>
+        <Header />
+        <Navbar setUser={setUser} />
+        <div className={styles.container}>
+          <div className={styles.loading}>Loading booking history...</div>
+        </div>
+        <Footer />
+      </>
     );
   }
   if (error) {
     return (
-      <div className={styles.container}>
-        <div className={styles.error}>{error}</div>
-      </div>
+      <>
+        <Header />
+        <Navbar setUser={setUser} />
+        <div className={styles.container}>
+          <div className={styles.error}>
+            <h2>Unable to Load History</h2>
+            <p>{error}</p>
+            <div className={styles.errorActions}>
+              <button
+                className={styles.retryBtn}
+                onClick={fetchBookingHistory}
+              >
+                Try Again
+              </button>
+              <button
+                className={styles.createBookingBtn}
+                onClick={handleCreateNewBooking}
+              >
+                Create New Booking
+              </button>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </>
     );
   }
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Booking History</h1>
-      
-      <div className={styles.content}>
-        {/* Left Sidebar - Booking List */}
-        <div className={styles.sidebar}>
-          <h2 className={styles.sidebarTitle}>Your Orders</h2>
-          {bookings.length === 0 ? (
-            <div className={styles.emptyState}>
-              <p>No bookings found</p>
-              <button 
-                className={styles.createBookingBtn}
-                onClick={() => navigate('/create-booking')}
-              >
-                Create Your First Booking
-              </button>
-            </div>
-          ) : (
-            <div className={styles.bookingsList}>
-              {bookings.map((booking) => (
-                <div
-                  key={booking._id}
-                  className={`${styles.bookingItem} ${
-                    selectedBooking?._id === booking._id ? styles.active : ''
-                  }`}
-                  onClick={() => handleBookingSelect(booking)}
+    <>
+      <Header />
+      <Navbar setUser={setUser} />
+      <div className={styles.container}>
+        <h1 className={styles.title}>Booking History</h1>
+        <div className={styles.content}>
+          {/* Left Sidebar - Booking List */}
+          <div className={styles.sidebar}>
+            <h2 className={styles.sidebarTitle}>Your Events</h2>
+            {bookings.length === 0 ? (
+              <div className={styles.emptyState}>
+                <div className={styles.emptyIcon}>
+                  <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                    <rect x="10" y="15" width="40" height="30" rx="3" stroke="#ccc" strokeWidth="2" fill="none"/>
+                    <path d="M18 25h24M18 32h16M18 39h20" stroke="#ccc" strokeWidth="1.5" strokeLinecap="round"/>
+                    <circle cx="45" cy="20" r="6" stroke="#ccc" strokeWidth="2" fill="none"/>
+                  </svg>
+                </div>
+                <p>No events found</p>
+                <p className={styles.emptySubtext}>Start creating your first event booking</p>
+                <button
+                  className={styles.createBookingBtn}
+                  onClick={handleCreateNewBooking}
                 >
-                  <div className={styles.bookingHeader}>
-                    <span className={styles.orderId}>Order #{booking._id}</span>
-                    <span className={`${styles.status} ${getStatusClass(booking.status)}`}>
-                      {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
-                    </span>
-                  </div>
-                  <div className={styles.bookingMeta}>
-                    <span className={styles.date}>
-                      {new Date(booking.orderDate).toLocaleDateString()}
-                    </span>
-                    <span className={styles.amount}>
-                      ${booking.totalAmount.toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-        {/* Right Content - Booking Details */}
-        <div className={styles.details}>
-          {selectedBooking ? (
-            <>
-              <div className={styles.detailsHeader}>
-                <h2>Order #{selectedBooking._id}</h2>
-                <span className={`${styles.status} ${getStatusClass(selectedBooking.status)}`}>
-                  {selectedBooking.status.charAt(0).toUpperCase() + selectedBooking.status.slice(1)}
-                </span>
+                  Create Your First Event
+                </button>
               </div>
-              <div className={styles.orderInfo}>
-                <div className={styles.infoRow}>
-                  <span className={styles.label}>Order Date:</span>
-                  <span className={styles.value}>{formatDate(selectedBooking.orderDate)}</span>
-                </div>
-                <div className={styles.infoRow}>
-                  <span className={styles.label}>Total Amount:</span>
-                  <span className={styles.value}>${selectedBooking.totalAmount.toFixed(2)}</span>
-                </div>
-                {selectedBooking.notes && (
-                  <div className={styles.infoRow}>
-                    <span className={styles.label}>Notes:</span>
-                    <span className={styles.value}>{selectedBooking.notes}</span>
-                  </div>
-                )}
-              </div>
-              <div className={styles.itemsSection}>
-                <h3>Items Ordered</h3>
-                <div className={styles.itemsList}>
-                  {selectedBooking.items.map((bookingItem, index) => (
-                    <div key={index} className={styles.item}>
-                      <div className={styles.itemInfo}>
-                        <span className={styles.itemName}>{bookingItem.item.name}</span>
-                        <span className={styles.itemPrice}>
-                          ${bookingItem.price.toFixed(2)} each
-                        </span>
-                      </div>
-                      <div className={styles.itemQuantity}>
-                        <span>Qty: {bookingItem.quantity}</span>
-                        <span className={styles.itemTotal}>
-                          ${(bookingItem.price * bookingItem.quantity).toFixed(2)}
-                        </span>
-                      </div>
+            ) : (
+              <div className={styles.bookingsList}>
+                {bookings.map((booking) => (
+                  <div
+                    key={booking._id}
+                    className={`${styles.bookingItem} ${
+                      selectedBooking?._id === booking._id ? styles.active : ''
+                    }`}
+                    onClick={() => handleBookingSelect(booking)}
+                  >
+                    <div className={styles.bookingHeader}>
+                      <span className={styles.orderId}>
+                        Event #{booking._id.slice(-6).toUpperCase()}
+                      </span>
+                      <span className={`${styles.status} ${getStatusClass(booking.status)}`}>
+                        {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                      </span>
                     </div>
-                  ))}
-                </div>
+                    <div className={styles.bookingMeta}>
+                      <span className={styles.date}>
+                        {new Date(booking.orderDate).toLocaleDateString()}
+                      </span>
+                      <span className={styles.amount}>
+                        ${booking.totalAmount.toFixed(2)}
+                      </span>
+                    </div>
+                    <div className={styles.bookingPreview}>
+                      <span className={styles.itemCount}>
+                        {booking.items.length} item{booking.items.length !== 1 ? 's' : ''}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className={styles.actionsSection}>
-                <button 
-                  className={styles.reorderBtn}
-                  onClick={() => {
-                    // TODO: Implement reorder functionality
-                    console.log('Reorder items:', selectedBooking.items);
-                    navigate('/create-booking');
-                  }}
-                >
-                  Reorder Items
-                </button>
-                <button 
-                  className={styles.backBtn}
-                  onClick={() => navigate('/profile')}
-                >
-                  Back to Profile
-                </button>
+            )}
+          </div>
+          {/* Right Content - Booking Details */}
+          <div className={styles.details}>
+            {selectedBooking ? (
+              <BookingDetail
+                booking={selectedBooking}
+                onReorder={handleReorder}
+                formatDate={formatDate}
+                getStatusClass={getStatusClass}
+              />
+            ) : (
+              <div className={styles.selectPrompt}>
+                <h2>Select an event to view details</h2>
+                <p>Choose an event from the left to see its full details</p>
               </div>
-            </>
-          ) : (
-            <div className={styles.selectPrompt}>
-              <h2>Select a booking to view details</h2>
-              <p>Choose an order from the left to see its full details</p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 export default BookingHistory;
