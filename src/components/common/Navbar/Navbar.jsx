@@ -5,7 +5,6 @@ import { logOut } from '../../../utils/users-service'; // Import logout function
 // import profile from '/Profile.png'
 // import home from '/Home.png'
 
-
 const Navbar = ({ setUser, ...props }) => { // Accept setUser as prop
     
     const handleLogOut = () => {
