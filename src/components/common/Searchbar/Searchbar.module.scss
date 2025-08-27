@@ -1,4 +1,4 @@
-
+@use "sass:color";
 
 $bg-main: #F7F9F9;
 $bg-alt: #D9E3E2;
@@ -29,7 +29,7 @@ $transition: 0.3s ease;
       color: $text-main;
 
       &::placeholder {
-        color: lighten($text-main, 30%);
+        color: color.adjust($text-main, $lightness: 30%);
       }
     }
 
@@ -42,7 +42,7 @@ $transition: 0.3s ease;
       transition: $transition;
 
       &:hover {
-        background: darken($accent, 10%);
+        background: color.adjust($accent, $lightness: -10%);
       }
     }
   }
@@ -87,7 +87,7 @@ $transition: 0.3s ease;
 
         em {
           font-style: italic;
-          color: lighten($text-main, 30%);
+          color: color.adjust($text-main, $lightness: 30%);
         }
       }
     }

@@ -1,24 +1,47 @@
-
 import { Link } from "react-router-dom";
-import styles from "../../common/Header/Header.module.scss";
-import Navbar from "../Navbar/Navbar"; // Import Navbar component
-import EV from '/EV.png'
+import { logOut } from "../../../utils/users-service"; // logout util
+import styles from "./Header.module.scss";
+import EV from "/EV.png";
 
-const Header = ({ setUser, ...props }) => { // Accept setUser prop to pass to Navbar
+const Header = ({ setUser }) => {
+  const handleLogOut = () => {
+    logOut(); // clear token from localStorage
+    setUser(null); // update state
+  };
+
   return (
     <header className={styles.header}>
-      <div className={styles['header-container']}>
+      <div className={styles.headerContainer}>
         {/* Logo */}
-        <Link to="/home" className={styles['header-logo']}>
-         <img src={EV} alt="EV" />
+        <Link to="/home" className={styles.headerLogo}>
+          <img src={EV} alt="EV" />
         </Link>
-        
+
         {/* Navbar */}
-        <Navbar setUser={setUser} {...props} />
+        <nav className={styles.navbar}>
+          <ul className={styles.navbarMenu}>
+            <li className={styles.navbarItem}>
+              <Link to="/home" className={styles.navbarLink}>Home</Link>
+            </li>
+            <li className={styles.navbarItem}>
+              <Link to="/bookings/new" className={styles.navbarLink}>New Booking</Link>
+            </li>
+            <li className={styles.navbarItem}>
+              <Link to="/profile" className={styles.navbarLink}>Profile</Link>
+            </li>
+            <li className={styles.navbarItem}>
+              <Link to="/bookings/history" className={styles.navbarLink}>Booking History</Link>
+            </li>
+            <li className={styles.navbarItem}>
+              <button onClick={handleLogOut} className={styles.navbarLink}>
+                Logout
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
   );
 };
 
 export default Header;
-

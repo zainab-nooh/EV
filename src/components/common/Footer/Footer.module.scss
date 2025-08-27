@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $bg-main: #f7f9f9;
 $bg-alt: #d9e3e2;
 $text-main: #5c6e51;
@@ -8,7 +10,11 @@ $shadow-subtle: 0 4px 20px rgba(53, 59, 50, 0.08);
 $gradient-accent: linear-gradient(135deg, #7b9e89 0%, #9bb8a5 100%);
 
 .footer {
-  background: linear-gradient(135deg, $bg-main 0%, lighten($bg-alt, 3%) 100%);
+  background: linear-gradient(
+    135deg,
+    $bg-main 0%,
+    color.adjust($bg-alt, $lightness: 3%) 100%
+  );
   color: $text-main;
   padding: clamp(1rem, 2vw, 1rem) clamp(0.5rem, 1vw, 1rem); 
   position: relative;
@@ -84,7 +90,7 @@ $gradient-accent: linear-gradient(135deg, #7b9e89 0%, #9bb8a5 100%);
     h4 {
       font-size: clamp(0.95rem, 1.8vw, 1rem);
       margin-bottom: 0.6rem;
-      color: darken($accent, 10%);
+      color: color.adjust($accent, $lightness: -10%);
       font-weight: 600;
     }
 

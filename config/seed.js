@@ -1,10 +1,13 @@
+import dotenv from 'dotenv'
 import mongoose from 'mongoose';
 import Category from '../models/Category.js'; // Adjust path as needed
 import Item from '../models/Item.js'; // Adjust path as needed
+
+dotenv.config()
 // Connect to your database
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI || 'mongodb+srv://A7med:77510Aa17500@cluster0.2bmrehl.mongodb.net/EV?retryWrites=true&w=majority&appName=Cluster0');
+    await mongoose.connect(process.env.MONGO_URI);
     console.log('Connected to MongoDB');
   } catch (error) {
     console.error('Database connection error:', error);
@@ -237,8 +240,6 @@ const runSeeder = async () => {
   await connectDB();
   await seedData();
 };
-// Export for use as module or run directly
-if (import.meta.url === `file://${process.argv[1]}`) {
-  runSeeder();
-}
+
+runSeeder()
 export default seedData;

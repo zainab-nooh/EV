@@ -1,37 +1,36 @@
-  import Header from "../../components/common/Header/Header";
-  import Footer from "../../components/common/Footer/Footer";
-  import Navbar from "../../components/common/Navbar/Navbar";
-  import styles from "./Profile.module.scss"
-  import { getProfile } from '../../utils/users-api';
+import Header from "../../components/common/Header/Header";
+import Footer from "../../components/common/Footer/Footer";
+// import Navbar from "../../components/common/Navbar/Navbar";
+import styles from "./Profile.module.scss";
+import { getProfile } from '../../utils/users-api';
 
+import { useState, useEffect } from "react";
 
-  import { useState, useEffect } from "react";
+export default function ProfilePage({ setUser }) {
+  const [user, setUserState] = useState(null); // renamed
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  export default function ProfilePage() {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-useEffect(() => {
-  async function fetchUser() {
-    try {
-      const data = await getProfile();
-      setUser(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const data = await getProfile();
+        setUserState(data); // use the renamed state setter
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     }
-  }
-      fetchUser();
-    }, []);
+    fetchUser();
+  }, []);
 
-    if (loading) return <p>Loading profile...</p>;
-    if (error) return <p>Error: {error}</p>;
+  if (loading) return <p>Loading profile...</p>;
+  if (error) return <p>Error: {error}</p>;
 
-    return (
-      <>
-      <Header />
+  return (
+    <>
+      <Header setUser={setUser} />
       <div className={styles.profileContainer}>
         <img 
           src={user.picture || '/default-profile.png'} 
@@ -42,6 +41,6 @@ useEffect(() => {
         <p>{user.email}</p>
       </div>
       <Footer />
-      </>
-    );
-  }
+    </>
+  );
+}

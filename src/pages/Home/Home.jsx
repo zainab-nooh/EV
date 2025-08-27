@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from '../../components/common/Header/Header'
-import Navbar from "../../components/common/Navbar/Navbar";
+
 import Footer from "../../components/common/Footer/Footer";
 import Searchbar from "../../components/common/Searchbar/Searchbar"
 import styles from "../../pages/Home/Home.module.scss";
@@ -59,7 +59,7 @@ export default function Homepage({setUser}) {
 
   return (
     <>
-    <Header />
+    <Header setUser={setUser} />
       <Searchbar />
       <main className={styles.mainContent}>
         {/* Categories Section */}

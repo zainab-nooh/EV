@@ -1,37 +1,98 @@
+@use "sass:color";
+
 $bg-main: #F7F9F9;
 $bg-alt: #D9E3E2;
 $text-main: #353B32;
 $accent: #7B9E89;
-$link-hover: darken($accent, 12%);
+
+// replace darken() with color.adjust()
+$link-hover: color.adjust($accent, $lightness: -12%);
 
 .header {
-  background: linear-gradient(135deg, $bg-main 0%, lighten($bg-alt, 3%) 100%);
+  background: linear-gradient(
+    135deg,
+    $bg-main 0%,
+    color.adjust($bg-alt, $lightness: 3%) 100%
+  );
   border-bottom: 2px solid $bg-alt;
   padding: 1rem 2rem;
 
-  .header-container {
+  .headerContainer {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: space-between; // This puts logo left and navbar right
+    justify-content: space-between;
   }
-  
-  .header-logo {
+
+  .headerLogo {
     display: flex;
     align-items: center;
     text-decoration: none;
-    
+
     img {
       height: 6rem;
       transition: transform 0.3s ease;
-      
+
       &:hover {
         transform: scale(1.05);
       }
     }
   }
+
+  /* Navbar styles merged */
+  .navbar {
+    display: flex;
+    align-items: center;
+
+    .navbarMenu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    .navbarItem {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbarLink {
+      text-decoration: none;
+      color: $text-main;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      font-family: inherit;
+
+      &:hover {
+        color: $accent;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .navbarProfile {
+      display: flex;
+      align-items: center;
+      margin-left: 1rem;
+
+      .navbarProfileImage {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: 2px solid $accent;
+        object-fit: cover;
+        cursor: pointer;
+      }
+    }
+  }
 }
-
-
-

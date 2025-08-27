@@ -13,8 +13,7 @@
     "start:dev": "NODE_ENV=development node server.js",
     "lint": "eslint .",
     "preview": "vite preview",
-     "seed": "node seed.js",
-    "seed:dev": "nodemon seed.js"
+    "seed": "node config/seed.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
