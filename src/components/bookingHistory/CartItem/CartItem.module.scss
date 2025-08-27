@@ -47,7 +47,7 @@
     }
     .item-description {
       font-size: 0.9rem;
-      color: darken(#353B32, 15%);
+      color: #353B32;
     }
     .item-price {
       .price-label {
@@ -86,7 +86,7 @@
         color: #353B32;
         transition: background-color 0.2s ease;
         &:hover:not(:disabled) {
-          background: darken(#D9E3E2, 5%);
+          background: #D9E3E2;
         }
         &:disabled {
           opacity: 0.4;
@@ -128,7 +128,7 @@
     }
     .total-value {
       font-weight: 700;
-      color: darken(#353B32, 10%);
+      color:#353B32;
     }
   }
   .item-actions {
