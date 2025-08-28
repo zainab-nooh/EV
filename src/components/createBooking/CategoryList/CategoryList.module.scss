@@ -8,27 +8,7 @@
   gap: 0.75rem;
   width: 100%;
 
-  // Smooth scrolling for long category lists
-  max-height: calc(100vh - 300px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  
-  // Custom scrollbar styling
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
 
-  &::-webkit-scrollbar-track {
-    background: var(--bg-alt);
-    border-radius: var(--radius-sm);
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--accent-secondary);
-    border-radius: var(--radius-sm);
-    
-    &:hover {
-      background: var(--accent-primary);
     }
   }
 

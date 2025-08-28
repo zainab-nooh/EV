@@ -9,4 +9,6 @@ router.post('/', checkAuth, dataController.create, apiController.create);
 router.put('/:id', checkAuth, dataController.update, apiController.update);
 router.delete('/:id', checkAuth, dataController.delete, apiController.delete);
 
+
+
 export default router;

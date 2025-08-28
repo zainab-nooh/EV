@@ -1,28 +1,25 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../Searchbar/Searchbar.module.scss";
+const token = localStorage.getItem('token');
+
 export default function SearchBar() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
-    if (!query.trim()) return;
-
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-      if (!response.ok) throw new Error("Search failed");
-      const data = await response.json();
-      setResults(data); // expect array of categories + items
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  
+const handleSearch = async (query) => {
+  try {
+    const response = await fetch(`/api/items/search?q=${encodeURIComponent(query)}`);
+    if (!response.ok) throw new Error('Search failed');
+    const data = await response.json();
+    console.log(data.items); // array of matched items
+  } catch (err) {
+    console.error(err);
+  }
+};
 
   const handleResultClick = (type, id) => {
     if (type === "category") {

@@ -12,6 +12,7 @@ const dataController = {
     }
   },
 
+
   async show(req, res, next) {
     try {
       const category = await Category.findById(req.params.id);
@@ -74,7 +75,8 @@ const dataController = {
       res.status(500).json({ error: 'Failed to delete category' });
     }
   }
-};
+}
+
 
 const apiController = {
   index(req, res) {
@@ -92,10 +94,11 @@ const apiController = {
   update(req, res) {
     res.json(res.locals.data);
   },
-
+  
   delete(req, res) {
     res.json(res.locals.data);
   }
+  
 };
 
 export { dataController, apiController };
