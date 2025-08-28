@@ -5,8 +5,9 @@ import itemsCtrl from '../controllers/itemController.js';
 const router = express.Router();
 
 // Get Categories
-router.get('/', itemsCtrl.index)
+router.get('/categories', dataController.index, apiController.index);
+
 // Get Items
-router.get('/', checkAuth, dataController.index, apiController.index)
+router.get('/items', checkAuth, itemsCtrl.index);
 
 export default router;
