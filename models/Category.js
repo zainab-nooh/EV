@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const categorySchema = new Schema({
     name: { type: String, required: true },
-    sortOrder: Number
+    sortOrder: Number,
+    image: String
 }, {
     timestamps: true
 });
