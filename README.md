@@ -6,6 +6,13 @@
 
 EV aims to be the **one-stop solution** for event planning, connecting event organizers with service providers and equipment suppliers. Our platform simplifies the complex process of event management by providing an intuitive marketplace where users can discover, compare, and book everything they need for their perfect event.
 
+## Demo
+
+ Visit the [live demo](https://ev-lrt7.onrender.com) to see EV in action
+
+<br>
+
+
 ## 👥 Team
 
 This project is developed by a team of 6 developers:
@@ -558,6 +565,10 @@ We use Trello to track tasks, milestones, and progress throughout the project.
 Design mockups, branding, and visual assets are created using Canva.
 🔗 [Canva Designs](https://www.canva.com/design/DAGw9lRB3jo/cmtHq-7po3jKELn3FowTWg/edit?utm_content=DAGw9lRB3jo&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
+## 👥 Presentaion
+
+Presentaion Powerpoint.
+🔗 [Presentation](https://docs.google.com/presentation/d/1zz-PdF1fpTBGL_DzhJco6yfujJxr56B4/edit?usp=sharing&ouid=104688052935961599990&rtpof=true&sd=true)
 
 ## 🎯 Conclusion
 
