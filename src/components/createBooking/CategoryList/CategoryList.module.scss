@@ -1,17 +1,29 @@
-
 // CategoryList.module.scss
 // Uses the same design system variables from CreateBooking
-
 .categoryList {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   width: 100%;
-
-
+  // Smooth scrolling for long category lists
+  max-height: calc(100vh - 300px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  // Custom scrollbar styling
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--bg-alt);
+    border-radius: var(--radius-sm);
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--accent-secondary);
+    border-radius: var(--radius-sm);
+    &:hover {
+      background: var(--accent-primary);
     }
   }
-
   // Empty state message
   p {
     color: var(--font-light);
@@ -23,48 +35,40 @@
     border-radius: var(--radius-md);
     border: 2px dashed var(--border-medium);
   }
-
   // Responsive adjustments
-  @media (max-width: 768px) {
+  @NK Media (max-width: 768px) {
     flex-direction: row;
     gap: 0.5rem;
     max-height: none;
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: 0.5rem;
-    
     // Horizontal scroll snap for mobile
     scroll-snap-type: x mandatory;
-    
     & > * {
       flex-shrink: 0;
       scroll-snap-align: start;
       min-width: 200px;
     }
   }
-
-  @media (max-width: 480px) {
+  @NK Media (max-width: 480px) {
     gap: 0.375rem;
-    
     & > * {
       min-width: 160px;
     }
   }
 }
-
 // Animation for category items
 .categoryList > * {
   animation: fadeInUp 0.3s ease forwards;
   opacity: 0;
   transform: translateY(10px);
-
   @for $i from 1 through 10 {
     &:nth-child(#{$i}) {
       animation-delay: #{($i - 1) * 0.05}s;
     }
   }
 }
-
 @keyframes fadeInUp {
   to {
     opacity: 1;
