@@ -80,39 +80,40 @@ const seedData = async () => {
         price: 200
       },
       {
-        name: 'Onyx Ballroom',
-        picture: '/venue/onex.jpg',
-        details: 'Onyx Ballroom offers a sophisticated and modern venue, perfect for weddings, corporate events, and special celebrations. With its spacious design, elegant décor, and versatile setup, it provides the ideal setting to create unforgettable memories.',
+        name: 'Sofitel Bahrain Ballroom',
+        picture: '/venue/sofitel.jpg',
+        details: 'The Sofitel Bahrain is a luxurious venue that combines French elegance with Arabian hospitality. Featuring high ceilings, stunning chandeliers, and state-of-the-art audio-visual facilities, it can accommodate both intimate gatherings and large-scale events. Ideal for weddings, corporate functions, galas, and special celebrations, the ballroom offers flexible seating arrangements, elegant décor, and professional event support to ensure a seamless and memorable experience.',
         category: venueCategory._id,
         price: 200
       },
 
+
       // Stage and Decorations
       {
-        name: 'LED String Lights (100ft)',
-        picture: '',
-        details: 'Warm white LED string lights, perfect for outdoor events and ambiance.',
+        name: 'Baloon Theme',
+        picture: '/decoration/ballooned.jpg',
+        details: '',
         category: decorationsCategory._id,
         price: 45
       },
       {
-        name: 'Uplighting Package',
-        picture: '/venue/ritz.jpg',
-        details: 'Set of 8 LED uplights with color changing capabilities and wireless control.',
+        name: 'Boho Theme',
+        picture: '/decoration/boho.jpg',
+        details: '',
         category: decorationsCategory._id,
         price: 120
       },
       {
-        name: 'Spotlight Set',
-        picture: 'venue/sofitel.jpg',
-        details: 'Professional stage spotlights for highlighting performers or speakers.',
+        name: 'Classic Theme',
+        picture: '/decoration/classic.jpg',
+        details: '',
         category: decorationsCategory._id,
         price: 90
       },
       {
-        name: 'Disco Ball & Motor',
-        picture: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400',
-        details: '20-inch disco ball with motor and spotlight for dance floors.',
+        name: 'Fabric',
+        picture: '/decoration/',
+        details: '',
         category: decorationsCategory._id,
         price: 35
       },
@@ -421,7 +422,7 @@ const seedData = async () => {
         category: cateringCategory._id,
         price: 3.5
       },
-      
+
       // Photography
       {
         name: 'Birthday Package 1',
