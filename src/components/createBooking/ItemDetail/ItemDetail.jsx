@@ -7,7 +7,7 @@ const ItemDetail = ({ item, onAddToCart }) => {
   return (
     <div className={styles.ItemDetail}>
       <img
-        src={item.image || "/default-item.png"}
+        src={item.picture || "/default-item.png"}
         alt={item.name}
         className="item-detail__image"
       />

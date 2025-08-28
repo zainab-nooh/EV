@@ -96,7 +96,7 @@ export default function Homepage({setUser}) {
             {items.map(item => (
               <div key={item._id} className={styles.itemCard}>
                 <img
-                  src={item.image || '/default-item.png'}
+                  src={item.picture || '/default-item.png'}
                   alt={item.name}
                   className={styles.itemImage}
                 />
