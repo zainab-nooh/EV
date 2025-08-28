@@ -112,7 +112,28 @@ const seedData = async () => {
       },
       {
         name: 'Fabric',
-        picture: '/decoration/',
+        picture: '/decoration/fabric.jpg',
+        details: '',
+        category: decorationsCategory._id,
+        price: 35
+      },
+      {
+        name: 'Flowered',
+        picture: '/decoration/flowered.jpg',
+        details: '',
+        category: decorationsCategory._id,
+        price: 35
+      },
+      {
+        name: 'Nature-inspired Theme',
+        picture: '/decoration/nature-inspired.jpg',
+        details: '',
+        category: decorationsCategory._id,
+        price: 35
+      },
+      {
+        name: 'Traditional Theme',
+        picture: '/decoration/traditional.jpg',
         details: '',
         category: decorationsCategory._id,
         price: 35
@@ -498,19 +519,48 @@ const seedData = async () => {
 
       // Game & Activities
       {
-        name: 'Luxury Event Bus',
-        picture: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400',
-        details: 'Luxury bus for guest transportation, seats up to 40 passengers.',
+        name: '360 Booth',
+        picture: '/games/360Booth.jpg',
+        details: '',
         category: activtiesCategory._id,
-        price: 400
+        price: 20
       },
       {
-        name: 'Valet Parking Service',
-        picture: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400',
-        details: 'Professional valet parking service for 4 hours.',
+        name: 'Audio Guest Book',
+        picture: '/games/AudioGuestBook.jpg',
+        details: '',
         category: activtiesCategory._id,
-        price: 300
+        price: 45
+      },
+      {
+        name: 'Karaoke Corner',
+        picture: '/games/KaraokeCorner.jpg',
+        details: '',
+        category: activtiesCategory._id,
+        price: 60
+      },
+      {
+        name: 'Photo Booth',
+        picture: '/games/PhotoBooth.jpg',
+        details: '',
+        category: activtiesCategory._id,
+        price: 45
+      },
+      {
+        name: 'Polaroid Wall',
+        picture: '/games/PolaroidWall.jpg',
+        details: '',
+        category: activtiesCategory._id,
+        price: 30
+      },
+      {
+        name: 'Prize Wheel',
+        picture: '/games/PrizeWheel.jpg',
+        details: '',
+        category: activtiesCategory._id,
+        price: 20
       }
+      
     ]);
     console.log('Items created:', items.length);
     console.log('Database seeded successfully!');
