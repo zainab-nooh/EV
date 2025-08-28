@@ -24,13 +24,13 @@ const seedData = async () => {
     // Create Categories
     const categories = await Category.create([
       { name: 'Venue', sortOrder: 1, image:'/venue/heaven.png'},
-      { name: 'Stage & Decorations', sortOrder: 2, image:'/Stage and decoration/Stage & Decorations.png'},
+      { name: 'Stage & Decorations', sortOrder: 2, image:'/decoration/Stage & Decorations.png'},
       { name: 'Cake', sortOrder: 3, image:'/Cakes/cake.png' },
       { name: 'Flower & Gifts', sortOrder: 4, image:'/flower/flower-3.jpg' },
       { name: 'Catering', sortOrder: 5, image:'/Catering/Beyond-catering-TradBreakfast.jpg'},
       { name: 'Photography', sortOrder: 6, image:'/Photography/photo2.jpeg' },
       { name: 'Staffing Services', sortOrder: 7, image:'/service/super.jpg' },
-      { name: 'Game & Activities', sortOrder: 8,image:'/games/g1.png' }
+      { name: 'Game & Activities', sortOrder: 8,image:'/games/PrizeWheel.jpg' }
     ]);
     console.log('Categories created:', categories.length);
     // Create Items for each category
