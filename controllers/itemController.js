@@ -61,6 +61,11 @@ const itemsCtrl = {
       console.error('Error fetching items by category:', err);
       res.status(500).json({ message: 'Server error while fetching items by category' });
     }
+  },
+    // ✅ NEW: search items by name
+  searchItems: async (query) => {
+    if (!query) return [];
+    return Item.find({ name: { $regex: query, $options: 'i' } });
   }
 };
 

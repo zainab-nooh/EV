@@ -30,7 +30,8 @@ app.use(morgan('dev'))
 // // API Routes - these must come before the static file serving
 app.use('/api/home', jwt, ensureLoggedIn,homeRoutes)
 app.use('/api/users', userRoutes)
-app.use('/api/categories', jwt, ensureLoggedIn,categoryRoutes )
+app.use('/api/categories', categoryRoutes); // public routes first
+app.use('/api/categories', jwt, ensureLoggedIn, categoryRoutes); // protected routes
 app.use('/api/items', jwt, ensureLoggedIn,itemRoutes)
 app.use('/api/bookings', jwt, ensureLoggedIn,bookingRoutes)
 app.use('/api/users', profileRoutes);
