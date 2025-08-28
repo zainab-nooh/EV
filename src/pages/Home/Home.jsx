@@ -56,7 +56,7 @@ export default function Homepage({setUser}) {
   return (
     <>
     <Header setUser={setUser} />
-      <Searchbar />
+      {/* <Searchbar /> */}
       <main className={styles.mainContent}>
         {/* Hero Section */}
         <section className={styles.heroSection}>
@@ -170,14 +170,14 @@ export default function Homepage({setUser}) {
           ) : (
             <p>Loading items...</p>
           )}
-          {/* Next Button */}
+          {/* Next Button
           <button
             className={styles.nextButton}
             onClick={handleNextItems}
             disabled={loadingItems}
           >
             View More Items
-          </button>
+          </button> */}
         </section>
         {/* Call to Action Section */}
         <section className={styles.ctaSection}>
