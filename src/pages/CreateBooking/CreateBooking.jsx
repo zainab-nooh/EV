@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../components/common/Header/Header';
@@ -116,7 +117,6 @@ export default function CreateBooking({ setUser }) {
     });
     
     // Show success message
-    alert(`${item.name} added to cart!`);
   };
 
   const getCartItemCount = () =>
@@ -147,9 +147,7 @@ export default function CreateBooking({ setUser }) {
       setCart([]);
       localStorage.removeItem('eventCart');
       setShowCart(false);
-      
-      alert('Booking created successfully! Starting new event.');
-      
+            
       return result;
     } catch (error) {
       console.error('Checkout error:', error);
@@ -179,12 +177,6 @@ export default function CreateBooking({ setUser }) {
         {/* Page Title */}
         <div className={styles.sectionHeading}>
           <span>CREATE BOOKING</span>
-          <button 
-            className={styles.cartToggle}
-            onClick={toggleCart}
-          >
-            Cart ({getCartItemCount()} items) - ${getCartTotal().toFixed(2)}
-          </button>
         </div>
 
         <div className={styles.content}>
