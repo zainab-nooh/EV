@@ -575,4 +575,13 @@ Presentaion Powerpoint.
 **EV** aims to redefine celebration event planning by combining modern technology, AI personalization, and user-friendly tools.
 With strong collaboration, creativity, and innovation, this platform is built to make every event unforgettable.
 
+#  **Connect With Me**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/zainab-h-nooh/)
+
+
+<br><br>
+
+---
+
 ### ✨ Plan smarter. Celebrate better. With EV.
